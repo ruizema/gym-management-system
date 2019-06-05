@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Boolean exit = false;
+        boolean exit = false;
         do {
             mainMenu();
             switch (scanner.nextLine()) {
@@ -30,5 +30,21 @@ public class Main {
                 "2. Création d'une séance\n" +
                 "3. (...)");
         // TODO: add all menu options
+    }
+
+    // These functions don't do anything except send and/or receive data from the CentralServer
+
+    private static void createAccount() {}
+
+    private static void createSession() {}
+
+    private static void createRegistration() {}
+
+    private static void viewSessions() {}
+
+    private static void viewRegistrations(int staffId) {}
+
+    private static boolean confirmPresence(int memberId) {
+        return false;
     }
 }
