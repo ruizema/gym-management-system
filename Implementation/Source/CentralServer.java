@@ -10,9 +10,12 @@ public class CentralServer {
     private HashMap[] registrations;
     private HashMap[] confirmations;
 
+    public int validateId(int id) {return 0;}
+
     public void createAccount() {}
 
-    public void createSession() {}
+    // Service != session!
+    public void createService() {}
 
     public void createRegistration() {}
 
