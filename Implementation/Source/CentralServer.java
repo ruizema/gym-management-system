@@ -15,11 +15,10 @@ public class CentralServer {
     public void createAccount(HashMap[] personalInfo) {
         accounts[accounts.size()] = personalInfo;
         //retourne un num de membre
-
     }
 
     // Service != session!
-    public void createService(HashMap[] informationSession) {
+    public void createSession(HashMap[] informationSession) {
         sessions[sessions.size()]= informationSession;
     }
 
@@ -27,13 +26,25 @@ public class CentralServer {
         registrations[registrations.size()] = infoRegistration;
     }
 
-    public HashMap getSessions() {
-        return new HashMap();
+    public void getSessions() {
+        for (int key: sessions.keySet()) {
+            System.out.println(key);
+            System.out.println(sessions.get(key) + "/n");
+        }
     }
 
-    public HashMap getRegistrations(int sessionId, int staffId) {
-        return new HashMap();
+    public void getRegistrations(int sessionId) {
+    //Case of registration being #id member : #id session
+        for (int key: registrations.ketSet()){
+            if(registrations.get(key) == sessionId){
+                System.out.println(key);
+            }
+        }
+    //Case of registration being #id session: #id member
+        for (int key: registrations.ketSet()){
+            if(key == sessionId){
+                System.out.println(registrations.get(key));
+            }
+        }
     }
-
-
 }
