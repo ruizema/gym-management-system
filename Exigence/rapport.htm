@@ -267,20 +267,18 @@
     </pre>
 
     <pre  style="font-family: times, serif;">
-        <span style="font-weight: bold;">Cas d'utilisation :</span> Création d'une séance
-        <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions nécessaires.
-        <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant d'entammer le scéanrio principal.
-        <span style="font-weight: bold;">Acteurs :</span> Acteur 1 (principal), Acteur 2 (secondaire).
+        <span style="font-weight: bold;">Cas d'utilisation :</span> Création d'un service
+        <span style="font-weight: bold;">But :</span> Le professionnel désire fournir un nouveau service aux clients du #GYM.
+        <span style="font-weight: bold;">Préconditions :</span> Le professionnel s'est déjà inscrit à un compte au #GYM.
+        <span style="font-weight: bold;">Acteurs :</span> Professionnel (principal), Agent (secondaire).
         <span style="font-weight: bold;">Scénario principal :</span>
-        1. Étape 1
-            1.1. Étape 1.1
-        2. Étape 2
-        3. Étape 3
-        <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement principal, alternatives possible à certaines étapes
-        1a.1. remplace étape 1 du scenario principal
-        1b.1. autre remplacement de la même étape
-        1b.2. suit 1b.1 indépendamment du scenario principal
-        <span style="font-weight: bold;">Postconditions :</span> État du système lorsque le scénario principal achève avec succès.
+        1. Le professionnel se présente à la réception.
+        2. L'agent demande au professionnel les informations nécessaires pour créer un nouveau service dans le Répertoire des Services.
+        3. L'agent envoie ces informations au Centre de Données.
+        4. Le Centre de Données crée le nouveau service dans le Répertoire des Services.
+        <span style="font-weight: bold;">Scénarios alternatifs :</span>
+        4a.1. Le Centre de Données rejette la requête, car certaines informations fournie sont invalides.
+        <span style="font-weight: bold;">Postconditions :</span> Un nouveau service a été créé dans le Répertoire des Services.
     </pre>
 
     <pre  style="font-family: times, serif;">
