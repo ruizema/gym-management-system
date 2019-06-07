@@ -283,36 +283,37 @@
 
     <pre  style="font-family: times, serif;">
         <span style="font-weight: bold;">Cas d'utilisation :</span> Confirmation de présence à une séance
-        <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions nécessaires.
-        <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant d'entammer le scéanrio principal.
-        <span style="font-weight: bold;">Acteurs :</span> Acteur 1 (principal), Acteur 2 (secondaire).
+        <span style="font-weight: bold;">But :</span> Après que le client s'est inscrit à une séance, et avant que cette dernière commence, le client doit se présenter
+        à la réception pour confirmer sa présence.
+        <span style="font-weight: bold;">Préconditions :</span> Le client s'est déjà inscrit à la séance. La séance n'est pas encore commencée.
+        <span style="font-weight: bold;">Acteurs :</span> Client (principal), Agent (secondaire).
         <span style="font-weight: bold;">Scénario principal :</span>
-        1. Étape 1
-            1.1. Étape 1.1
-        2. Étape 2
-        3. Étape 3
-        <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement principal, alternatives possible à certaines étapes
-        1a.1. remplace étape 1 du scenario principal
-        1b.1. autre remplacement de la même étape
-        1b.2. suit 1b.1 indépendamment du scenario principal
-        <span style="font-weight: bold;">Postconditions :</span> État du système lorsque le scénario principal achève avec succès.
+        1. Le client se présente à la réception et indique à l'agent la séance à laquelle il s'est inscrit.
+        2. L'agent cherche la séance dans le Répertoire de Service.
+        3. Le client donne à l'agent son numéro de membre.
+            3.1 L'agent envoie ce numéro au Centre de données pour vérifier si l'inscription est valide.
+        4. Le système indique que l'inscription est valide.
+        5. L'agent donne au client accès à la séance.
+            5.1 Le système crée un enregistrement de la confirmation sur le disque, avec les informations nécessaires.
+        <span style="font-weight: bold;">Scénarios alternatifs :</span>
+        4a.1. Le système indique que l'inscription n'est pas valide.
+        4a.2. Le client est refusé accès à la séance.
+        <span style="font-weight: bold;">Postconditions :</span> Le client est donné accès à la séance pour laquelle il s'est inscrit.
     </pre>
     
     <pre  style="font-family: times, serif;">
         <span style="font-weight: bold;">Cas d'utilisation :</span> Consultation des inscriptions à une séance
-        <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions nécessaires.
-        <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant d'entammer le scéanrio principal.
-        <span style="font-weight: bold;">Acteurs :</span> Acteur 1 (principal), Acteur 2 (secondaire).
+        <span style="font-weight: bold;">But :</span> Le professionnel désire consulter les inscriptions à ses séances.
+        <span style="font-weight: bold;">Préconditions :</span> Le professionnel a déjà ouvert une séance dans le Répertoire de Services.
+        <span style="font-weight: bold;">Acteurs :</span> Professionnel (principal), Agent (secondaire).
         <span style="font-weight: bold;">Scénario principal :</span>
-        1. Étape 1
-            1.1. Étape 1.1
-        2. Étape 2
-        3. Étape 3
-        <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement principal, alternatives possible à certaines étapes
-        1a.1. remplace étape 1 du scenario principal
-        1b.1. autre remplacement de la même étape
-        1b.2. suit 1b.1 indépendamment du scenario principal
-        <span style="font-weight: bold;">Postconditions :</span> État du système lorsque le scénario principal achève avec succès.
+        1. Le professionnel donne son numéro à l'agent de la réception.
+        2. Le professionnel sélectionne à l'agent la séance qu'il veut consulter.
+        3. L'agent envoie un requête au système pour afficher la liste des inscriptions pour la séance sélectionnée.
+        <span style="font-weight: bold;">Scénarios alternatifs :</span>
+        1a.1. Le numéro de l'agent est invalide.
+        2a.1. Le professionnel n'a pas encore créé de séances.
+        <span style="font-weight: bold;">Postconditions :</span> Le système affiche une liste des inscriptions pour la séance sélectionnée.
     </pre>
 
     <h2>
