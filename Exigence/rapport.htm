@@ -216,19 +216,79 @@
         <span style="font-weight: bold;">Cas d'utilisation :</span> Création d'un nouveau compte.
         <span style="font-weight: bold;">But :</span> Le client désire adhérer a #GYM.
         <span style="font-weight: bold;">Préconditions :</span> Le client n'est pas membre de #gym.
-        <span style="font-weight: bold;">Acteurs :</span> Client ou professionnel(principal), Agent (secondaire).
+        <span style="font-weight: bold;">Acteurs :</span> Agent (principal), Client ou Professionnel (secondaire).
         <span style="font-weight: bold;">Scénario principal :</span>
-        1. Le client ou le professionnelse présente à la recéption du centre.
+        1. Le client ou le professionnel se présente à la recéption du centre.
         2. L'agent lui demande ses informations personnelles
             2.2. L'agent rentre les informations dans son ordinateur.
-             2.3. les informations sont donc enregistrées dans le système central: Le Centre de Données #GYM.
+            2.3. les informations sont donc enregistrées dans le système central: Le Centre de Données #GYM.
         <span style="font-weight: bold;">Scénarios alternatifs :</span> N/A
         <span style="font-weight: bold;">Postconditions :</span> Le systeme assigne un numéro unique au membre ou au professionnel.
     </pre>
 
     <pre style="font-family: 'Open Sans', sans-serif;">
         <span style="font-weight: bold;">Cas d'utilisation :</span> Validation du numéro de membre .
-        <span style="font-weight: bold;">But :</span>  Le client a l'intention d'accéder au centre sportif
+        <span style="font-weight: bold;">But :</span>  Le client a l'intention d'accéder au centre sportif et ses services.
+        <span style="font-weight: bold;">Préconditions :</span> Le client est déjà membre du #GYM.
+        <span style="font-weight: bold;">Acteurs :</span> Agent (principal), Client (secondaire).
+        <span style="font-weight: bold;">Scénario principal :</span>
+        1. Le client se rend à la réception et donne son numéro d'identifiant.
+        2. L'agent entre le numéro dans le logiciel.
+        3. Le logiciel confirme le numéro et affiche "Validé".
+        <span style="font-weight: bold;">Scénarios alternatifs :</span>
+        3a.1. Le logiciel rejete le numéro et affiche "Numéro invalide".
+        3b.1. Le logiciel rejete le numéro et affiche "Membre suspendu".
+        <span style="font-weight: bold;">Postconditions :</span>Le système ouvre le passage au #GYM.
+    </pre>
+    
+    <pre style="font-family: 'Open Sans', sans-serif;">
+        <span style="font-weight: bold;">Cas d'utilisation :</span> Consultation du Répertoire de Services
+        <span style="font-weight: bold;">But :</span> Pour s'inscrire à une séance, l'agent doit aider le client à consulter l'ensemble des services offerts et les séances.
+        <span style="font-weight: bold;">Préconditions :</span> Le client est déjà membre de #GYM.
+        <span style="font-weight: bold;">Acteurs :</span> Agent (principal), Client (secondaire).
+        <span style="font-weight: bold;">Scénario principal :</span>
+        1. L'agent à la réception demande au logiciel de consulter la liste des services offerts.
+        2. Le système fait afficher l'ensemble des services offerts et les séances disponibles dans le Répertoire des Services.
+        <span style="font-weight: bold;">Scénarios alternatifs :</span>
+        N/A
+        <span style="font-weight: bold;">Postconditions :</span> Le système a affiché les détails des services offerts et séances disponibles. 
+        Il sera ensuite possible de sélectionner une séance pour s'y inscrire.
+    </pre>
+
+    <pre style="font-family: 'Open Sans', sans-serif;">
+        <span style="font-weight: bold;">Cas d'utilisation :</span> Inscription à une séance
+        <span style="font-weight: bold;">But :</span> Le client désire s'inscrire à une séance.
+        <span style="font-weight: bold;">Préconditions :</span> Le client est déjà membre de #GYM.
+        <span style="font-weight: bold;">Acteurs :</span> Agent (principal), Client (secondaire).
+        <span style="font-weight: bold;">Scénario principal :</span>
+        1. L'agent appelle Validation du numéro de membre.
+        2. L'agent appelle Consultation de Répertoire de Services.
+        3. L'agent sélectionne la séance désirée et y inscrit le membre.
+        4. Lors de la confirmation de la séance, le logiciel enregistre les champs d'inscription dans le centre de données. 
+        <span style="font-weight: bold;">Scénarios alternatifs :</span> N/A
+        <span style="font-weight: bold;">Postconditions :</span> L'inscription est enregistré dans le centre de données.
+    </pre>
+
+    <pre style="font-family: 'Open Sans', sans-serif;">
+        <span style="font-weight: bold;">Cas d'utilisation :</span> Création d'une séance
+        <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions nécessaires.
+        <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant d'entammer le scéanrio principal.
+        <span style="font-weight: bold;">Acteurs :</span> Acteur 1 (principal), Acteur 2 (secondaire).
+        <span style="font-weight: bold;">Scénario principal :</span>
+        1. Étape 1
+            1.1. Étape 1.1
+        2. Étape 2
+        3. Étape 3
+        <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement principal, alternatives possible à certaines étapes
+        1a.1. remplace étape 1 du scenario principal
+        1b.1. autre remplacement de la même étape
+        1b.2. suit 1b.1 indépendamment du scenario principal
+        <span style="font-weight: bold;">Postconditions :</span> État du système lorsque le scénario principal achève avec succès.
+    </pre>
+
+    <pre style="font-family: 'Open Sans', sans-serif;">
+        <span style="font-weight: bold;">Cas d'utilisation :</span> Confirmation de présence à une séance
+        <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions nécessaires.
         <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant d'entammer le scéanrio principal.
         <span style="font-weight: bold;">Acteurs :</span> Acteur 1 (principal), Acteur 2 (secondaire).
         <span style="font-weight: bold;">Scénario principal :</span>
@@ -244,55 +304,7 @@
     </pre>
     
     <pre style="font-family: 'Open Sans', sans-serif;">
-        <span style="font-weight: bold;">Cas d'utilisation :</span> Consultation des services offerts
-        <span style="font-weight: bold;">But :</span> Pour s'inscrire à une séance, l'agent doit aider le client à consulter l'ensemble des services offerts.
-        <span style="font-weight: bold;">Préconditions :</span> Le client est déjà membre de #GYM.
-        <span style="font-weight: bold;">Acteurs :</span> Client (principal), Agent (secondaire).
-        <span style="font-weight: bold;">Scénario principal :</span>
-        1. Le client demande à l'agent au réception de consulter la liste des services offerts.
-        2. Le système fait afficher l'ensemble des services offerts et les séances disponibles dans le Répertoire des Services.
-        <span style="font-weight: bold;">Scénarios alternatifs :</span>
-        N/A
-        <span style="font-weight: bold;">Postconditions :</span> Le système a affiché les détails des services offerts et séances disponibles. 
-        Il sera ensuite possible de sélectionner une séance pour s'y inscrire.
-    </pre>
-
-    <pre style="font-family: 'Open Sans', sans-serif;">
-        <span style="font-weight: bold;">Cas d'utilisation :</span> nom du CU en expression verbale.
-        <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions nécessaires.
-        <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant d'entammer le scéanrio principal.
-        <span style="font-weight: bold;">Acteurs :</span> Acteur 1 (principal), Acteur 2 (secondaire).
-        <span style="font-weight: bold;">Scénario principal :</span>
-        1. Étape 1
-            1.1. Étape 1.1
-        2. Étape 2
-        3. Étape 3
-        <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement principal, alternatives possible à certaines étapes
-        1a.1. remplace étape 1 du scenario principal
-        1b.1. autre remplacement de la même étape
-        1b.2. suit 1b.1 indépendamment du scenario principal
-        <span style="font-weight: bold;">Postconditions :</span> État du système lorsque le scénario principal achève avec succès.
-    </pre>
-
-    <pre style="font-family: 'Open Sans', sans-serif;">
-        <span style="font-weight: bold;">Cas d'utilisation :</span> nom du CU en expression verbale.
-        <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions nécessaires.
-        <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant d'entammer le scéanrio principal.
-        <span style="font-weight: bold;">Acteurs :</span> Acteur 1 (principal), Acteur 2 (secondaire).
-        <span style="font-weight: bold;">Scénario principal :</span>
-        1. Étape 1
-            1.1. Étape 1.1
-        2. Étape 2
-        3. Étape 3
-        <span style="font-weight: bold;">Scénarios alternatifs :</span> ramifications du déroulement principal, alternatives possible à certaines étapes
-        1a.1. remplace étape 1 du scenario principal
-        1b.1. autre remplacement de la même étape
-        1b.2. suit 1b.1 indépendamment du scenario principal
-        <span style="font-weight: bold;">Postconditions :</span> État du système lorsque le scénario principal achève avec succès.
-    </pre>
-
-    <pre style="font-family: 'Open Sans', sans-serif;">
-        <span style="font-weight: bold;">Cas d'utilisation :</span> nom du CU en expression verbale.
+        <span style="font-weight: bold;">Cas d'utilisation :</span> Consultation des inscriptions à une séance
         <span style="font-weight: bold;">But :</span> mise en contexte, description brève, préconditions nécessaires.
         <span style="font-weight: bold;">Préconditions :</span> préconditions nécessaires avant d'entammer le scéanrio principal.
         <span style="font-weight: bold;">Acteurs :</span> Acteur 1 (principal), Acteur 2 (secondaire).
