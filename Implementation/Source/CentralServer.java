@@ -5,46 +5,41 @@ public class CentralServer {
     private Main main;
 
     // TODO: Replace with actual files (after prototype)
-    private HashMap[] sessions;
-    private HashMap[] accounts;
-    private HashMap[] registrations;
+    private String[] sessions;
+    private int[] accounts;
+    private int[] registrations = new int[1];
     private HashMap[] confirmations;
 
-    public int validateId(int id) {return 0;}
-
-    public void createAccount(HashMap[] personalInfo) {
-        accounts[accounts.size()] = personalInfo;
-        //retourne un num de membre
-    }
-
-    // Service != session!
-    public void createSession(HashMap[] informationSession) {
-        sessions[sessions.size()]= informationSession;
-    }
-
-    public void createRegistration(HashMap[] infoRegistration) {
-        registrations[registrations.size()] = infoRegistration;
-    }
-
-    public void getSessions() {
-        for (int key: sessions.keySet()) {
-            System.out.println(key);
-            System.out.println(sessions.get(key) + "/n");
+    public int validateId(int id) {
+        if (id == 1234567) {
+            return 0;
+        } else {
+            return 1;
         }
     }
 
-    public void getRegistrations(int sessionId) {
-    //Case of registration being #id member : #id session
-        for (int key: registrations.ketSet()){
-            if(registrations.get(key) == sessionId){
-                System.out.println(key);
-            }
-        }
-    //Case of registration being #id session: #id member
-        for (int key: registrations.ketSet()){
-            if(key == sessionId){
-                System.out.println(registrations.get(key));
-            }
-        }
+    public int createAccount(String personalInfo) {
+        return 1234567;
+    }
+
+    public int createSession(String[] sessionInfo) {
+        sessions = sessionInfo;
+        return 7654321;
+    }
+
+    public void createRegistration(int memberId, int sessionId) {
+        registrations[0] = memberId;
+    }
+
+    public String[] getSessions() {
+        return sessions;
+    }
+
+    public int[] getRegistrations(int sessionId) {
+        return registrations;
+    }
+
+    public boolean confirmPresence(int memberId, int sessionId) {
+        return true;
     }
 }
