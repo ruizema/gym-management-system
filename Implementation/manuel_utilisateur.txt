@@ -1,0 +1,7 @@
+# MANUEL D'UTILISATEUR
+
+- Dans le menu, entrez le chiffre indiqué pour sélectionner une option.
+
+- Pour le prototype, n'essayez pas d'accéder des objets inexistants, par exemple s'inscrire à une séance lorsqu'il n'en existe pas.
+
+- Lorsqu'on vous demande d'entrer plusieurs données, entrez-les une à la fois, en appuyant sur ENTER entre chaque donnée.
