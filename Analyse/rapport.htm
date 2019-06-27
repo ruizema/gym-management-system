@@ -211,7 +211,9 @@
         alt="Diagramme de cas d'utilisation UML" />
     </p>
     <h2>Tâche 3: Cas d'utilisation</h2>
-    
+    <p>
+        <b>Modification des cas d'utilisation en caractères gras</b>
+    </p>
     <pre style="font-family: times, serif;">
         <span style="font-weight: bold;">Cas d'utilisation :</span> Création d'un nouveau compte.
         <span style="font-weight: bold;">But :</span> Le client désire adhérer a #GYM.
@@ -222,7 +224,11 @@
         2. L'agent lui demande ses informations personnelles
             2.2. L'agent rentre les informations dans son ordinateur.
             2.3. les informations sont donc enregistrées dans le système central: Le Centre de Données #GYM.
-        <span style="font-weight: bold;">Scénarios alternatifs :</span> N/A
+        <b>3. Le client paie ses frais d'adhésion.
+        4. Le client reçoit son numéro de membre.</b>
+        <span style="font-weight: bold;">Scénarios alternatifs :</span>
+        <b>2.3a.1 Le logiciel refuse de créer un nouvel enregistrement, le client est déjà membre.
+        3a.1 La méthode de paiement est refusée ou les fonds sont déficients.</b>
         <span style="font-weight: bold;">Postconditions :</span> Le systeme assigne un numéro unique au membre ou au professionnel.
     </pre>
 
@@ -237,7 +243,8 @@
         3. Le logiciel confirme le numéro et affiche "Validé".
         <span style="font-weight: bold;">Scénarios alternatifs :</span>
         3a.1. Le logiciel rejete le numéro et affiche "Numéro invalide".
-        3b.1. Le logiciel rejete le numéro et affiche "Membre suspendu".
+        <b>3b.1. Le logiciel rejete le numéro et affiche "Membre suspendu".
+        3b.2. L'agent informe le membre que son compte est suspendu à cause de frais due.</b>
         <span style="font-weight: bold;">Postconditions :</span>Le système ouvre le passage au #GYM.
     </pre>
     
@@ -264,8 +271,11 @@
         1. L'agent appelle Validation du numéro de membre.
         2. L'agent appelle Consultation de Répertoire de Services.
         3. L'agent sélectionne la séance désirée et y inscrit le membre.
-        4. Lors de la confirmation de l'inscription à la séance, le logiciel enregistre les champs d'inscription dans le centre de données. 
-        <span style="font-weight: bold;">Scénarios alternatifs :</span> N/A
+        4. Lors de la confirmation de l'inscription à la séance, le logiciel enregistre les champs d'inscription dans le centre de données.
+        <b>5. Le logiciel cherche et affice le montant due pour la séance.
+        6. Le membre paie pour son inscription.</b>
+        <span style="font-weight: bold;">Scénarios alternatifs :</span> 
+        <b>6a.1 Les fonds sont insufficents, le membre n'est pas inscrit.</b>
         <span style="font-weight: bold;">Postconditions :</span> L'inscription est enregistré dans le centre de données.
     </pre>
 
@@ -318,6 +328,37 @@
         2a.1. Le professionnel n'a pas encore créé de séances.
         <span style="font-weight: bold;">Postconditions :</span> Le système affiche une liste des inscriptions pour la séance sélectionnée.
     </pre>
+    <p>************NOUVEAU CUS A COMPLETER*************************</p>
+    <pre  style="font-family: times, serif;">
+        <span style="font-weight: bold;">Cas d'utilisation :</span> Procédure comptable principale
+        <span style="font-weight: bold;">But :</span> Création de fichier TEF et du rapport de synthèse
+        <span style="font-weight: bold;">Préconditions :</span> Le professionnel à fournit des séances et il est vendredi minuit.
+        <span style="font-weight: bold;">Acteurs :</span> Agent (principal), Professionnel (secondaire).
+        <span style="font-weight: bold;">Scénario principal :</span>
+        1. 
+        2. 
+        3. 
+        <span style="font-weight: bold;">Scénarios alternatifs :</span>
+        1a.1. 
+        2a.1. 
+        <span style="font-weight: bold;">Postconditions :</span> Les fichiers TEF et le rapport synthèse sont créer.
+    </pre>
+    
+    <pre  style="font-family: times, serif;">
+        <span style="font-weight: bold;">Cas d'utilisation :</span> Traitement des paiements des frais d'adhésion
+        <span style="font-weight: bold;">But :</span> Mettre le système à jour sur la validation des membres
+        <span style="font-weight: bold;">Préconditions :</span> Il est 21h.
+        <span style="font-weight: bold;">Acteurs :</span> Services comptables RnB (principal)
+        <span style="font-weight: bold;">Scénario principal :</span>
+        1. 
+        2. 
+        3. 
+        <span style="font-weight: bold;">Scénarios alternatifs :</span>
+        1a.1. 
+        2a.1. 
+        <span style="font-weight: bold;">Postconditions :</span> Le Centre de Données #GYM est mis à jour sur la validité de chacun de ses membres.
+    </pre>
+    
 
     <h2>
         Tâche 4: Risques</h2>
