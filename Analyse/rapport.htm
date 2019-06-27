@@ -328,19 +328,23 @@
         2a.1. Le professionnel n'a pas encore créé de séances.
         <span style="font-weight: bold;">Postconditions :</span> Le système affiche une liste des inscriptions pour la séance sélectionnée.
     </pre>
-    <p>************NOUVEAU CUS A COMPLETER*************************</p>
+    <p><font color="green">********************** NOUVEAU CUS A COMPLETER **********************</font></p>
     <pre  style="font-family: times, serif;">
         <span style="font-weight: bold;">Cas d'utilisation :</span> Procédure comptable principale
         <span style="font-weight: bold;">But :</span> Création de fichier TEF et du rapport de synthèse
-        <span style="font-weight: bold;">Préconditions :</span> Le professionnel à fournit des séances et il est vendredi minuit.
-        <span style="font-weight: bold;">Acteurs :</span> Agent (principal), Professionnel (secondaire).
+        <span style="font-weight: bold;">Préconditions :</span> Le professionnel à fournit des séances, il est vendredi minuit
+        <span style="font-weight: bold;">Acteurs :</span> Gérant (principal), Professionnel (secondaire).
         <span style="font-weight: bold;">Scénario principal :</span>
-        1. 
-        2. 
-        3. 
+        1. La procédure est éxécutée automatiquement vendredi à minuit.
+        2. Génèration des enregistrements sur le disque sous forme de données de transfert électronique de fond (TEF).
+            2.1 Le fichier TEF contient le nom du professionnel, le numéro du professionnel et le montant à lui transférer pour ces services de la semaine.
+        3. Lecture du fichier des services fournis de la semaine.
+        4. Production d'un rapport de synthèse qui est envoyé au gérant.
+            4.1 Le rapport concerne les comptes payables et décrit la liste de tous les professionnels qui doivent être payés cette semaine-là, le nombre de services de chacun et le total de leurs frais pour cette semaine-là.
+            4.2 À la fin du rapport, le nombre total de professionnels qui ont fourni des services cette semaine-là, le nombre total de services et le total des frais doivent apparaitre.
         <span style="font-weight: bold;">Scénarios alternatifs :</span>
-        1a.1. 
-        2a.1. 
+        1a.1. La procédure est exécutée individuellement à la demande du gérant de #GYM à n'importe quel moment de la semaine. 
+         
         <span style="font-weight: bold;">Postconditions :</span> Les fichiers TEF et le rapport synthèse sont créer.
     </pre>
     
@@ -350,15 +354,15 @@
         <span style="font-weight: bold;">Préconditions :</span> Il est 21h.
         <span style="font-weight: bold;">Acteurs :</span> Services comptables RnB (principal)
         <span style="font-weight: bold;">Scénario principal :</span>
-        1. 
-        2. 
-        3. 
+        1. Le service comptable enregistrement des paiements des frais d'adhésion.
+        2. Le service comptable suspens les membres dont les frais sont en retard.
+        3. Le service comptable rétablis les membres suspendus qui ont maintenant payé les frais dus. 
+        4. Le système informatique de RnB met à jour les enregistrements d'adhésion pertinents du Centre de Données #GYM chaque soir à 21h.
         <span style="font-weight: bold;">Scénarios alternatifs :</span>
-        1a.1. 
-        2a.1. 
+        N/A
         <span style="font-weight: bold;">Postconditions :</span> Le Centre de Données #GYM est mis à jour sur la validité de chacun de ses membres.
     </pre>
-    
+    <p><font color="green">***************************************************************************</font></p>
 
     <h2>
         Tâche 4: Risques</h2>
