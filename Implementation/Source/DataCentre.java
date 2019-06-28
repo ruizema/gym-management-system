@@ -18,21 +18,32 @@ public class DataCentre {
         }
     }
 
-    public int createAccount(String personalInfo) {
-        return 1234567;
-    }
-
-    public void createSession(String[] sessionInfo) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter("sessions.txt", true));
-        writer.write((new Session(sessionInfo)).toString());
+    public int createDataRecord(String[] data, String dataType) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(dataType.toLowerCase() + "s.txt", true));
+        DataRecord dataRecord;
+        switch (dataType) {
+            case "Session":
+                dataRecord = new Session(data);
+                break;
+            case "Registration":
+                dataRecord = new Registration(data);
+                break;
+            case "Confirmation":
+                dataRecord = new Confirmation(data);
+                break;
+            case "Account":
+                dataRecord = new Account(data);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + dataType);
+        }
+        writer.write(((DataRecord) dataRecord).toString());
         writer.close();
-    }
-
-    public void createRegistration(int memberId, int sessionId) {
-        registrations[0] = memberId;
-    }
-
-    public boolean confirmPresence(int memberId, int sessionId) {
-        return true;
+        // return the id if an account, -1 otherwise, -2 if a field is wrong
+        if (dataType.equals("Account")) {
+            return ((Account) dataRecord).getId();
+        } else {
+            return -1;
+        }
     }
 }

@@ -4,11 +4,8 @@ import java.util.Scanner;
 // TODO: Pay to createAccount (client)
 // TODO: "Membre suspendu" (hasn't paid for a month)
 // TODO: Show price when creating registration for session
-// TODO: Fields for registration, session, & presence confirmation now have required formats
-// TODO: DataRecord now has a price field
 // TODO: principalAccounting() in DataCentre - generates EFT files
 // TODO: generateServiceReport() in DataCentre - called from principalAccounting
-// TODO: Store service data in a text file
 // TODO: updateAccounts() in DataCentre - allows RnB to update clients' payment information
 
 public class Main {
@@ -27,10 +24,10 @@ public class Main {
                         gymAccess();
                         break;
                     case "2":
-                        createAccount();
+                        createDataRecord("Account");
                         break;
                     case "3":
-                        createSession();
+                        createDataRecord("Session");
                         break;
                     /*case "4":
                         viewSessions();
@@ -81,22 +78,20 @@ public class Main {
         }
     }
 
-    private static void createAccount() {
-        System.out.println("Nom du membre");
-        String name = scanner.nextLine();
-        System.out.println("Le numéro du membre est " + dataCentre.createAccount(name));
-    }
-
-    private static void createSession() throws IOException {
-        int nbFields = Session.getFieldNames().length;
+    private static void createDataRecord(String dataType) throws IOException {
+        int nbFields = DataRecord.getFieldNames(dataType).length;
         String[] data = new String[nbFields];
         System.out.println("Entrez ces données:");
         for (int i = 0; i < nbFields; i++) {
-            System.out.println(Session.getFieldNames()[i]);
+            System.out.println(DataRecord.getFieldNames(dataType)[i]);
             String field = scanner.nextLine();
             data[i] = field;
         }
-        dataCentre.createSession(data);
+        int returnInt = dataCentre.createDataRecord(data, dataType);
+        if (dataType.equals("Account")) {
+            // TODO: change the id to a 9 digit string
+            System.out.println("Le numéro du membre est " + returnInt);
+        }
     }
 
     /*

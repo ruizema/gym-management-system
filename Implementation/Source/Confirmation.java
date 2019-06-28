@@ -1,7 +1,7 @@
-public class Confirmation {
+public class Confirmation extends DataRecord {
     private String[] data;
 
     public Confirmation(String[] data) {
-        this.data = data;
+        super(data);
     }
 }
