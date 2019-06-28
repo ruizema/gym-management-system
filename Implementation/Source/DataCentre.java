@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -8,8 +9,12 @@ public class DataCentre {
 
     private Main main;
 
-    public int validateId(int id) {
-        LinkedList<Integer> existingIds = DataRecord.getExistingIds();
+    public int validateId(int id) throws IOException {
+        LinkedList<DataRecord> accounts = readDataRecords("Account");
+        LinkedList<Integer> existingIds = new LinkedList<>();
+        for (DataRecord account : accounts) {
+            existingIds.add(((Account) account).getId());
+        }
         for (int existingId : existingIds) {
             if (id == existingId) {
                 return 0;
@@ -35,12 +40,15 @@ public class DataCentre {
             if (dataType.equals("Account")) {
                 nbFields += 2;
             }
-            int lineNumber = lineCount % nbFields;
-            if (lineNumber == 0) {
-                if (data.length != 0) {
+            int lineNumber = lineCount % (nbFields + 1);
+            if (lineNumber == 0 || !reader.hasNextLine()) {
+                if (lineCount != 0) {
+                    data[lineNumber - 1] = line.split(": ")[1];
                     switch (dataType) {
                         case "Account":
-                            dataRecords.add(new Account(data));
+                            Account account = new Account(data);
+                            account.setId(Integer.parseInt(data[1]));
+                            dataRecords.add(account);
                             break;
                         case "Session":
                             dataRecords.add(new Session(data));
@@ -78,6 +86,7 @@ public class DataCentre {
                 break;
             case "Account":
                 dataRecord = new Account(data);
+                ((Account) dataRecord).generateId();
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + dataType);
@@ -115,5 +124,15 @@ public class DataCentre {
             }
         }
         return output;
+    }
+
+    public boolean validatePresence(String memberId, String serviceId, String sessionId) throws IOException {
+        LinkedList<DataRecord> registrations = readDataRecords("Registration");
+        for (DataRecord registration : registrations) {
+            if (Arrays.equals(((Registration) registration).getPresenceInformation(), new String[]{memberId, serviceId, sessionId})) {
+                return true;
+            }
+        }
+        return false;
     }
 }
