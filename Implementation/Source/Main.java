@@ -37,12 +37,12 @@ public class Main {
                     case "6":
                         viewRegistrations();
                         break;
-                        /*
                     case "7":
                         confirmPresence();
                         break;
+                        /*
                     case "8":
-                        generateServiceReport()
+                        generateServiceReport();
                         break;
                         */
                     case "q":
@@ -67,7 +67,7 @@ public class Main {
                 "q: QUITTER");
     }
 
-    private static void gymAccess() {
+    private static void gymAccess() throws IOException {
         System.out.println("Entrez le numéro de membre:");
         int validationCode = dataCentre.validateId(scanner.nextInt());
         switch (validationCode) {
@@ -107,36 +107,35 @@ public class Main {
 
     private static void viewSessions() throws IOException {
         String[] sessions = dataCentre.getSessions();
-        for (int i = 0; i < sessions.length; i++) {
-            System.out.println(sessions[i]);
+        for (String session : sessions) {
+            System.out.println(session);
         }
     }
 
     private static void viewRegistrations() throws IOException {
         System.out.println("Entrez le numéro du professionnel:");
         String[] registrations = dataCentre.getRegistrations(scanner.nextInt());
-        for (int i = 0; i < registrations.length; i++) {
-            System.out.println(registrations[i]);
+        for (String registration : registrations) {
+            System.out.println(registration);
         }
     }
-    /*
 
-    private static void confirmPresence() {
+    private static void confirmPresence() throws IOException {
         System.out.println("Entrez le numéro du membre");
-        int memberId = scanner.nextInt();
-
-        if (dataCentre.validateId(memberId) == 0) {
-            System.out.println("Entrez le numéro de la séance");
+        String memberId = scanner.nextLine();
+        if (dataCentre.validateId(Integer.parseInt(memberId)) == 0) {
             viewSessions();
-            int sessionId = scanner.nextInt();
-            if (dataCentre.confirmPresence(memberId, sessionId)) {
+            System.out.println("Entrez le code du service (7 chiffres):");
+            String serviceId = scanner.nextLine();
+            System.out.println("Entrez le numéro de la séance");
+            String sessionId = scanner.nextLine();
+            if (dataCentre.validatePresence(memberId, serviceId, sessionId)) {
                 System.out.println("Présence confirmée!");
+            } else {
+                System.out.println("Inscription invalide!");
             }
         } else {
             System.out.println("Numéro invalide!");
         }
     }
-
-     */
-
 }

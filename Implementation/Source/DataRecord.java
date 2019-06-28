@@ -14,7 +14,7 @@ public abstract class DataRecord {
                 "Numéro du professionnel (9 chiffres)",
                 "Code du service (7 chiffres)",
                 "Code de la séance (7 chiffres)",
-                "Frais du service (en $ : 5 chiffres dont 2 décimales)",
+                "Frais du service (en $, 5 chiffres dont 2 décimales)",
                 "Commentaires (100 caractères) (facultatif).",
             }, "Registration", new String[]{
                 "Date et heure actuelles (JJ-MM-AAAA HH:MM:SS)",
@@ -42,10 +42,6 @@ public abstract class DataRecord {
         this.data = data;
     }
 
-    public static LinkedList<Integer> getExistingIds() {
-        return existingIds;
-    }
-
     public static String[] getFieldNames(String className) {
         return fieldNames.get(className);
     }
@@ -56,16 +52,5 @@ public abstract class DataRecord {
             output += fieldNames.get(className)[i] + ": " + data[i] + "\n";
         }
         return output;
-    }
-
-    public int generateId() {
-        int id = (int) Math.floor(Math.random() * 1000000000);
-        for (int existingId : existingIds) {
-            if (existingId == id) {
-                id = (int) Math.floor(Math.random() * 1000000000);
-            }
-        }
-        existingIds.add(id);
-        return id;
     }
 }

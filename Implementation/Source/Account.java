@@ -5,11 +5,19 @@ public class Account extends DataRecord {
 
     public Account(String[] data) {
         super(data);
-        id = generateId();
+    }
+
+    public void generateId() {
+        int id = (int) Math.floor(Math.random() * 1000000000);
+        this.id = id;
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String toString(String className) {
