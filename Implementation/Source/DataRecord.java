@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 public abstract class DataRecord {
@@ -34,10 +35,15 @@ public abstract class DataRecord {
                 "Nom"
             }));
     String[] data;
-    private static int[] existingIds = {};
 
-    public DataRecord(String[] data) {
+    private static LinkedList<Integer> existingIds = new LinkedList<>();
+
+    DataRecord(String[] data) {
         this.data = data;
+    }
+
+    public static LinkedList<Integer> getExistingIds() {
+        return existingIds;
     }
 
     public static String[] getFieldNames(String className) {
@@ -45,20 +51,21 @@ public abstract class DataRecord {
     }
 
     public String toString(String className) {
-        String output = "";
+        String output = "\n";
         for (int i = 0; i < fieldNames.get(className).length; i++) {
             output += fieldNames.get(className)[i] + ": " + data[i] + "\n";
         }
-        return output + "\n";
+        return output;
     }
 
     public int generateId() {
         int id = (int) Math.floor(Math.random() * 1000000000);
-        for (int i = 0; i < existingIds.length; i++) {
-            if (existingIds[i] == id) {
+        for (int existingId : existingIds) {
+            if (existingId == id) {
                 id = (int) Math.floor(Math.random() * 1000000000);
             }
         }
+        existingIds.add(id);
         return id;
     }
 }

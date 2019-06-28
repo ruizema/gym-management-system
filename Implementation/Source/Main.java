@@ -1,12 +1,11 @@
 import java.io.IOException;
 import java.util.Scanner;
 
-// TODO: Pay to createAccount (client)
-// TODO: "Membre suspendu" (hasn't paid for a month)
 // TODO: Show price when creating registration for session
 // TODO: principalAccounting() in DataCentre - generates EFT files
 // TODO: generateServiceReport() in DataCentre - called from principalAccounting
 // TODO: updateAccounts() in DataCentre - allows RnB to update clients' payment information
+// TODO: "Membre suspendu" (hasn't paid for a month)
 
 public class Main {
 
@@ -32,15 +31,20 @@ public class Main {
                     /*case "4":
                         viewSessions();
                         break;
+                        */
                     case "5":
-                        createRegistration();
+                        createDataRecord("Registration");
                         break;
-                    case "6":
+                    /*case "6":
                         viewRegistrations();
                         break;
                     case "7":
                         confirmPresence();
-                        break;*/
+                        break;
+                    case "8":
+                        generateServiceReport()
+                        break;
+                        */
                     case "q":
                         exit = true;
                         break;
@@ -59,6 +63,7 @@ public class Main {
                 "5. Inscription à une séance\n" +
                 "6. Consultation des inscriptions\n" +
                 "7. Confirmation de la présence\n" +
+                "8. Rapport de comptable\n" +
                 "q: QUITTER");
     }
 
@@ -88,22 +93,19 @@ public class Main {
             data[i] = field;
         }
         int returnInt = dataCentre.createDataRecord(data, dataType);
-        if (dataType.equals("Account")) {
-            // TODO: change the id to a 9 digit string
-            System.out.println("Le numéro du membre est " + returnInt);
+
+        if (returnInt == -1) {
+            System.out.println("Création réussie!");
+        } else if (dataType.equals("Account")) {
+            String returnIntToString = String.valueOf(returnInt);
+            if (returnIntToString.length() < 9) {
+                returnIntToString = "0".repeat(9 - returnIntToString.length()) + returnIntToString;
+            }
+            System.out.println("Le numéro du membre est " + returnIntToString);
         }
     }
 
     /*
-    private static void createRegistration() {
-        System.out.println("Entrez le code d'une séance");
-        viewSessions();
-        int sessionId = scanner.nextInt();
-        System.out.println("Entrez le numéro du membre");
-        int memberId = scanner.nextInt();
-        dataCentre.createRegistration(memberId, sessionId);
-    }
-
     /*private static void viewSessions() {
         String[] sessions = dataCentre.getSessions();
         for (int i = 0; i < sessions.length; i++) {
