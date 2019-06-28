@@ -1,12 +1,22 @@
-import java.util.Arrays;
+import java.io.IOException;
 import java.util.Scanner;
+
+// TODO: Pay to createAccount (client)
+// TODO: "Membre suspendu" (hasn't paid for a month)
+// TODO: Show price when creating registration for session
+// TODO: Fields for registration, session, & presence confirmation now have required formats
+// TODO: DataRecord now has a price field
+// TODO: principalAccounting() in DataCentre - generates EFT files
+// TODO: generateServiceReport() in DataCentre - called from principalAccounting
+// TODO: Store service data in a text file
+// TODO: updateAccounts() in DataCentre - allows RnB to update clients' payment information
 
 public class Main {
 
-    private static CentralServer server = new CentralServer();
+    private static DataCentre dataCentre = new DataCentre();
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         boolean exit = false;
         do {
             mainMenu();
@@ -22,7 +32,7 @@ public class Main {
                     case "3":
                         createSession();
                         break;
-                    case "4":
+                    /*case "4":
                         viewSessions();
                         break;
                     case "5":
@@ -33,7 +43,7 @@ public class Main {
                         break;
                     case "7":
                         confirmPresence();
-                        break;
+                        break;*/
                     case "q":
                         exit = true;
                         break;
@@ -42,7 +52,7 @@ public class Main {
         } while (!exit);
     }
 
-    public static void mainMenu() {
+    private static void mainMenu() {
         System.out.println("\nCentre Sportif #GYM\n" +
                 "---- Choisissez une option ----\n" +
                 "1. Vérification de l'accès\n" +
@@ -57,8 +67,8 @@ public class Main {
 
     private static void gymAccess() {
         System.out.println("Entrez le numéro de membre:");
-        int validation = server.validateId(scanner.nextInt());
-        switch (validation) {
+        int validationCode = dataCentre.validateId(scanner.nextInt());
+        switch (validationCode) {
             case 0:
                 System.out.println("Validé!");
                 break;
@@ -74,39 +84,33 @@ public class Main {
     private static void createAccount() {
         System.out.println("Nom du membre");
         String name = scanner.nextLine();
-        System.out.println("Le numéro du membre est " + server.createAccount(name));
+        System.out.println("Le numéro du membre est " + dataCentre.createAccount(name));
     }
 
-    private static void createSession() {
-        System.out.println("Entrez ces données:\n" +
-                "Date et heure actuelles\n" +
-                "    Date de début du service\n" +
-                "    Date de fin du service\n" +
-                "    Heure du service\n" +
-                "    Récurrence hebdomadaire du service (quels jours il est offert à la même heure)\n" +
-                "    Capacité maximale\n" +
-                "    Numéro du professionnel\n" +
-                "    Code du service\n" +
-                "    Commentaires (facultatif).");
-
-        String[] sessionInfo = new String[9];
-        for (int i = 0; i < sessionInfo.length; i++) {
-            sessionInfo[i] = scanner.nextLine();
+    private static void createSession() throws IOException {
+        int nbFields = Session.getFieldNames().length;
+        String[] data = new String[nbFields];
+        System.out.println("Entrez ces données:");
+        for (int i = 0; i < nbFields; i++) {
+            System.out.println(Session.getFieldNames()[i]);
+            String field = scanner.nextLine();
+            data[i] = field;
         }
-        System.out.println("Le code de la séance est " + server.createSession(sessionInfo));
+        dataCentre.createSession(data);
     }
 
+    /*
     private static void createRegistration() {
         System.out.println("Entrez le code d'une séance");
         viewSessions();
         int sessionId = scanner.nextInt();
         System.out.println("Entrez le numéro du membre");
         int memberId = scanner.nextInt();
-        server.createRegistration(memberId, sessionId);
+        dataCentre.createRegistration(memberId, sessionId);
     }
 
-    private static void viewSessions() {
-        String[] sessions = server.getSessions();
+    /*private static void viewSessions() {
+        String[] sessions = dataCentre.getSessions();
         for (int i = 0; i < sessions.length; i++) {
             System.out.println(sessions[i]);
         }
@@ -114,7 +118,7 @@ public class Main {
 
     private static void viewRegistrations() {
         System.out.println("Entrez le code d'une séance");
-        int[] registrations = server.getRegistrations(scanner.nextInt());
+        int[] registrations = dataCentre.getRegistrations(scanner.nextInt());
         for (int i = 0; i < registrations.length; i++) {
             System.out.println(registrations[i]);
         }
@@ -125,15 +129,18 @@ public class Main {
         System.out.println("Entrez le numéro du membre");
         int memberId = scanner.nextInt();
 
-        if (server.validateId(memberId) == 0) {
+        if (dataCentre.validateId(memberId) == 0) {
             System.out.println("Entrez le numéro de la séance");
             viewSessions();
             int sessionId = scanner.nextInt();
-            if (server.confirmPresence(memberId, sessionId)) {
+            if (dataCentre.confirmPresence(memberId, sessionId)) {
                 System.out.println("Présence confirmée!");
             }
         } else {
             System.out.println("Numéro invalide!");
         }
     }
+
+     */
+
 }

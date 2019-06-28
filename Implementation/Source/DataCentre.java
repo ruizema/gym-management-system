@@ -1,11 +1,11 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 
-public class CentralServer {
+public class DataCentre {
 
     private Main main;
-
-    // TODO: Replace with actual files (after prototype)
-    private String[] sessions;
     private int[] accounts;
     private int[] registrations = new int[1];
     private HashMap[] confirmations;
@@ -22,21 +22,14 @@ public class CentralServer {
         return 1234567;
     }
 
-    public int createSession(String[] sessionInfo) {
-        sessions = sessionInfo;
-        return 7654321;
+    public void createSession(String[] sessionInfo) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter("sessions.txt", true));
+        writer.write((new Session(sessionInfo)).toString());
+        writer.close();
     }
 
     public void createRegistration(int memberId, int sessionId) {
         registrations[0] = memberId;
-    }
-
-    public String[] getSessions() {
-        return sessions;
-    }
-
-    public int[] getRegistrations(int sessionId) {
-        return registrations;
     }
 
     public boolean confirmPresence(int memberId, int sessionId) {
