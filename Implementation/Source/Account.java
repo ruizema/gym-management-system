@@ -1,5 +1,5 @@
 public class Account extends DataRecord {
-    private String[] data;
+    // Extra fields
     private int id;
     private boolean suspended = false;
 
@@ -15,6 +15,7 @@ public class Account extends DataRecord {
     public String toString(String className) {
         String superString = super.toString(className);
         superString += "Numéro du membre (9 chiffres): " + id + "\n";
+        superString += "Suspendu: " + suspended + "\n";
         return superString;
     }
 

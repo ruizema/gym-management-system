@@ -1,7 +1,10 @@
 public class Registration extends DataRecord {
-    private String[] data;
 
     public Registration(String[] data) {
         super(data);
+    }
+
+    public int getEmployeeId() {
+        return Integer.parseInt(data[2]);
     }
 }

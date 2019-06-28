@@ -28,16 +28,16 @@ public class Main {
                     case "3":
                         createDataRecord("Session");
                         break;
-                    /*case "4":
+                    case "4":
                         viewSessions();
                         break;
-                        */
                     case "5":
                         createDataRecord("Registration");
                         break;
-                    /*case "6":
+                    case "6":
                         viewRegistrations();
                         break;
+                        /*
                     case "7":
                         confirmPresence();
                         break;
@@ -105,22 +105,21 @@ public class Main {
         }
     }
 
-    /*
-    /*private static void viewSessions() {
+    private static void viewSessions() throws IOException {
         String[] sessions = dataCentre.getSessions();
         for (int i = 0; i < sessions.length; i++) {
             System.out.println(sessions[i]);
         }
     }
 
-    private static void viewRegistrations() {
-        System.out.println("Entrez le code d'une séance");
-        int[] registrations = dataCentre.getRegistrations(scanner.nextInt());
+    private static void viewRegistrations() throws IOException {
+        System.out.println("Entrez le numéro du professionnel:");
+        String[] registrations = dataCentre.getRegistrations(scanner.nextInt());
         for (int i = 0; i < registrations.length; i++) {
             System.out.println(registrations[i]);
         }
-        System.out.println("Numéro: " + 7654321);
     }
+    /*
 
     private static void confirmPresence() {
         System.out.println("Entrez le numéro du membre");
