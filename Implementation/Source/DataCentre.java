@@ -31,22 +31,36 @@ public class DataCentre {
         while (reader.hasNextLine()) {
             String line = reader.nextLine();
             int nbFields = DataRecord.getFieldNames(dataType).length;
+            // Accounts have 2 extra fields beyond the original input
+            if (dataType.equals("Account")) {
+                nbFields += 2;
+            }
             int lineNumber = lineCount % nbFields;
             if (lineNumber == 0) {
                 if (data.length != 0) {
-                    if (dataType.equals("Account")) {
-                        dataRecords.add(new Account(data));
-                    } else {
-                        // TODO: Create the appropriate data record
+                    switch (dataType) {
+                        case "Account":
+                            dataRecords.add(new Account(data));
+                            break;
+                        case "Session":
+                            dataRecords.add(new Session(data));
+                            break;
+                        case "Registration":
+                            dataRecords.add(new Registration(data));
+                            break;
+                        case "Confirmation":
+                            dataRecords.add(new Confirmation(data));
+                            break;
                     }
                 }
                 data = new String[nbFields];
-            } else {
+            } else if (!line.equals("")) {
                 data[lineNumber - 1] = line.split(": ")[1];
             }
             lineCount++;
         }
         reader.close();
+        return dataRecords;
     }
 
     public int createDataRecord(String[] data, String dataType) throws IOException {
@@ -77,5 +91,29 @@ public class DataCentre {
         } else {
             return -1;
         }
+    }
+
+    public String[] getSessions() throws IOException {
+        LinkedList<DataRecord> sessions = readDataRecords("Session");
+        String[] output = new String[sessions.size()];
+        int i = 0;
+        for (DataRecord session : sessions) {
+            output[i] = session.toString("Session");
+            i++;
+        }
+        return output;
+    }
+
+    public String[] getRegistrations(int employeeId) throws IOException {
+        LinkedList<DataRecord> registrations = readDataRecords("Registration");
+        String[] output = new String[registrations.size()];
+        int outputIndex = 0;
+        for (DataRecord registration : registrations) {
+            if (((Registration) registration).getEmployeeId() == employeeId) {
+                output[outputIndex] = registration.toString("Registration");
+                outputIndex++;
+            }
+        }
+        return output;
     }
 }
