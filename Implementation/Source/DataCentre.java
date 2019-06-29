@@ -26,10 +26,6 @@ public class DataCentre {
         return 1;
     }
 
-    public Account findAccount(int accountId) {
-        return null;
-    }
-
     public LinkedList<DataRecord> readDataRecords(String dataType) throws IOException {
         String filename = dataType.toLowerCase() + "s.txt";
         Scanner reader = new Scanner(new File(filename));
@@ -162,7 +158,6 @@ public class DataCentre {
                 String toPay = line.split("\t")[2];
                 String name = null;
                 for (DataRecord account : readDataRecords("Account")) {
-                    System.out.println(id + "-" + ((Account) account).getId());
                     if (((Account) account).getId().equals(id)) {
                         name = ((Account) account).getName();
                     }

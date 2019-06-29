@@ -45,7 +45,7 @@ public class Main {
         } while (!exit);
     }
 
-    private static void mainMenu() throws IOException {
+    private static void mainMenu() {
         System.out.println("\nCentre Sportif #GYM\n" +
                 "---- Choisissez une option ----\n" +
                 "1. Vérification de l'accès\n" +
@@ -57,7 +57,6 @@ public class Main {
                 "7. Confirmation de la présence\n" +
                 "8. Rapport de comptable\n" +
                 "q: QUITTER");
-        dataCentre.principalAccounting();
     }
 
     private static void gymAccess() throws IOException {
