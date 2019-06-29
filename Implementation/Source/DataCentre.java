@@ -5,17 +5,17 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class DataCentre {
 
     private Main main;
 
-    public int validateId(int id) throws IOException {
+    public int validateId(String id) throws IOException {
         LinkedList<DataRecord> accounts = readDataRecords("Account");
-        LinkedList<Integer> existingIds = new LinkedList<>();
         for (DataRecord account : accounts) {
             Account properAccount = (Account) account;
-            if (properAccount.getId() == id) {
+            if (properAccount.getId().equals(id)) {
                 if (properAccount.isSuspended()) {
                     return 2;
                 } else {
@@ -49,7 +49,7 @@ public class DataCentre {
                     switch (dataType) {
                         case "Account":
                             Account account = new Account(data);
-                            account.setId(Integer.parseInt(data[1]));
+                            account.setId(data[1]);
                             dataRecords.add(account);
                             break;
                         case "Session":
@@ -105,7 +105,7 @@ public class DataCentre {
         // return the id if an account, -1 otherwise, -2 if a field is wrong
         if (dataType.equals("Account")) {
             System.out.println("Veuillez payer les frais d'adhésion!");
-            return ((Account) dataRecord).getId();
+            return Integer.parseInt(((Account) dataRecord).getId());
         } else {
             return -1;
         }
@@ -153,11 +153,40 @@ public class DataCentre {
         return false;
     }
 
-    public void principalAccounting() {
-
+    public void principalAccounting() throws IOException {
+        String report = generateServiceReport();
+        int eftCount = 0;
+        for (String line : report.split("\n")) {
+            if (Pattern.matches("[1-9]", line.substring(0, 1))) {
+                String id = line.split("\t")[0];
+                String toPay = line.split("\t")[2];
+                String name = null;
+                for (DataRecord account : readDataRecords("Account")) {
+                    System.out.println(id + "-" + ((Account) account).getId());
+                    if (((Account) account).getId().equals(id)) {
+                        name = ((Account) account).getName();
+                    }
+                }
+                String eft = "Nom du professionnel: " + name + '\n' +
+                        "Numéro du professionnel: " + id + '\n' +
+                        "Montant à transférer: " + toPay;
+                FileWriter fileWriter = new FileWriter("eft_" + eftCount + ".txt");
+                fileWriter.write(eft);
+                fileWriter.close();
+                eftCount++;
+            }
+        }
+        // Envoyer le rapport au gerant
+        System.out.println(report);
     }
 
-    public void updateAccounts() {}
+    public void updateAccounts(String accountId, boolean suspended) throws IOException {
+        for (DataRecord account : readDataRecords("Account")) {
+            if (((Account) account).getId().equals(accountId)) {
+                ((Account) account).setSuspended(suspended);
+            }
+        }
+    }
 
     public String generateServiceReport() throws IOException {
         String[] sessions = getSessions();

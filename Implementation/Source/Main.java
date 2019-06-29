@@ -1,9 +1,6 @@
 import java.io.IOException;
 import java.util.Scanner;
 
-// TODO: principalAccounting() in DataCentre - generates EFT files
-// TODO: updateAccounts() in DataCentre - allows RnB to update clients' payment information
-
 public class Main {
 
     private static DataCentre dataCentre = new DataCentre();
@@ -48,7 +45,7 @@ public class Main {
         } while (!exit);
     }
 
-    private static void mainMenu() {
+    private static void mainMenu() throws IOException {
         System.out.println("\nCentre Sportif #GYM\n" +
                 "---- Choisissez une option ----\n" +
                 "1. Vérification de l'accès\n" +
@@ -60,11 +57,12 @@ public class Main {
                 "7. Confirmation de la présence\n" +
                 "8. Rapport de comptable\n" +
                 "q: QUITTER");
+        dataCentre.principalAccounting();
     }
 
     private static void gymAccess() throws IOException {
         System.out.println("Entrez le numéro de membre:");
-        int validationCode = dataCentre.validateId(scanner.nextInt());
+        int validationCode = dataCentre.validateId(scanner.nextLine());
         switch (validationCode) {
             case 0:
                 System.out.println("Validé!");
@@ -118,7 +116,7 @@ public class Main {
     private static void confirmPresence() throws IOException {
         System.out.println("Entrez le numéro du membre");
         String memberId = scanner.nextLine();
-        if (dataCentre.validateId(Integer.parseInt(memberId)) == 0) {
+        if (dataCentre.validateId(memberId) == 0) {
             viewSessions();
             System.out.println("Entrez le code du service (7 chiffres):");
             String serviceId = scanner.nextLine();

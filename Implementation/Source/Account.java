@@ -1,6 +1,6 @@
 public class Account extends DataRecord {
     // Extra fields
-    private int id;
+    private String id;
     private boolean suspended = false;
 
     public Account(String[] data) {
@@ -9,15 +9,20 @@ public class Account extends DataRecord {
 
     public void generateId() {
         int id = (int) Math.floor(Math.random() * 1000000000);
-        this.id = id;
+        String stringId = "0".repeat(9 - String.valueOf(id).length()) + id;
+        this.id = stringId;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return data[0];
     }
 
     public String toString(String className) {
