@@ -36,8 +36,6 @@ public abstract class DataRecord {
             }));
     String[] data;
 
-    private static LinkedList<Integer> existingIds = new LinkedList<>();
-
     DataRecord(String[] data) {
         this.data = data;
     }

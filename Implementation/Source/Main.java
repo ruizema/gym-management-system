@@ -1,11 +1,8 @@
 import java.io.IOException;
 import java.util.Scanner;
 
-// TODO: Show price when creating registration for session
 // TODO: principalAccounting() in DataCentre - generates EFT files
-// TODO: generateServiceReport() in DataCentre - called from principalAccounting
 // TODO: updateAccounts() in DataCentre - allows RnB to update clients' payment information
-// TODO: "Membre suspendu" (hasn't paid for a month)
 
 public class Main {
 
@@ -40,11 +37,9 @@ public class Main {
                     case "7":
                         confirmPresence();
                         break;
-                        /*
                     case "8":
                         generateServiceReport();
                         break;
-                        */
                     case "q":
                         exit = true;
                         break;
@@ -137,5 +132,9 @@ public class Main {
         } else {
             System.out.println("Numéro invalide!");
         }
+    }
+
+    private static void generateServiceReport() throws IOException {
+        System.out.println(dataCentre.generateServiceReport());
     }
 }
