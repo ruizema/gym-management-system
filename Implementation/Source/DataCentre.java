@@ -11,6 +11,11 @@ public class DataCentre {
 
     private Main main;
 
+    public String[] login(String email) {
+        // TODO
+        return new String[3];
+    }
+
     public int validateId(String id) throws IOException {
         LinkedList<DataRecord> accounts = readDataRecords("Account");
         for (DataRecord account : accounts) {

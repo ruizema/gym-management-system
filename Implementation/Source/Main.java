@@ -45,6 +45,39 @@ public class Main {
         } while (!exit);
     }
 
+    private static void loginMenu() {
+        System.out.println("\nIdentification de l'utilisateur:\n" +
+                "Entrez votre courriel:");
+        String email = scanner.nextLine();
+        String[] response = dataCentre.login(email);
+        switch (Integer.parseInt(response[0])) {
+            case 0:
+                System.out.println("Validé");
+                System.out.println(response[1]);
+                System.out.println(response[2]);
+                if (response[3].equals("Professionnel")) {
+                    professionalMenu();
+                } else {
+                    memberMenu();
+                }
+                break;
+            case 1:
+                System.out.println("Numéro invalide");
+                break;
+            case 2:
+                System.out.println("Membre suspendu");
+                break;
+        }
+    }
+
+    private static void memberMenu() {
+        // TODO
+    }
+
+    private static void professionalMenu() {
+        // TODO
+    }
+
     private static void mainMenu() {
         System.out.println("\nCentre Sportif #GYM\n" +
                 "---- Choisissez une option ----\n" +
@@ -60,6 +93,7 @@ public class Main {
     }
 
     private static void gymAccess() throws IOException {
+        // TODO: Deprecated
         System.out.println("Entrez le numéro de membre:");
         int validationCode = dataCentre.validateId(scanner.nextLine());
         switch (validationCode) {
