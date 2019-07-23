@@ -1,10 +1,16 @@
 public class Account extends DataRecord {
-    // Extra fields
+
     private String id;
     private boolean suspended = false;
+    private String email;
+    private String type;
+    private String name;
 
     public Account(String[] data) {
         super(data);
+        this.name = data[0];
+        this.email = data[1];
+        this.type = data[6];
     }
 
     public void generateId() {
@@ -22,7 +28,16 @@ public class Account extends DataRecord {
     }
 
     public String getName() {
-        return data[0];
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+
+    public String getEmail() {
+        return email;
     }
 
     public String getInfosReport() {
