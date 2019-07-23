@@ -3,13 +3,13 @@ public class Account extends DataRecord {
     private String id;
     private boolean suspended = false;
     private String email;
-    private String type;
     private String name;
+    private String type;
 
     public Account(String[] data) {
         super(data);
-        this.name = data[0];
-        this.email = data[1];
+        this.email = data[0];
+        this.name = data[1];
         this.type = data[6];
     }
 
@@ -35,14 +35,13 @@ public class Account extends DataRecord {
         return type;
     }
 
-
     public String getEmail() {
         return email;
     }
 
     public String getInfosReport() {
         String infos = "";
-        infos += data[1] + "\n" + id + "\n";
+        infos += name + "\n" + id + "\n";
         for(int i=2; i<data.length-1; i++){
             infos += data[i] + "\n";
         }

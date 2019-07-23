@@ -1,3 +1,4 @@
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,6 +14,7 @@ public class DataCentre {
     private LinkedList<Session> sessions = new LinkedList<>();
     private LinkedList<Confirmation> confirmations = new LinkedList<>();
     private LinkedList<Registration> registrations = new LinkedList<>();
+    private LinkedList<Service> services = new LinkedList<>();
 
     public String[] login(String email) {
         Account account = accounts.get(email);
@@ -54,6 +56,8 @@ public class DataCentre {
                 return registrations;
             case "Confirmation":
                 return confirmations;
+            case "Service":
+                return services;
         }
         return null;
     }
@@ -79,6 +83,9 @@ public class DataCentre {
                 Account account = new Account(data);
                 account.generateId();
                 accounts.put(account.getEmail(), account);
+                break;
+            case "Service":
+                services.add(new Service(data));
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + dataType);
@@ -188,5 +195,87 @@ public class DataCentre {
                 "Total des frais: " + fees + '\n';
     }
 
-   // public 
+    public Account getAccount(String id) throws IOException {
+        LinkedList accounts = getDataRecords("Account");
+        Account foundAccount = null;
+        for(Object account: accounts) {
+            if(((Account)account).getId().equals(id)) {
+                foundAccount = (Account) account;
+            }
+        }
+        return foundAccount;
+    }
+
+    public String getService(String id) {
+        String name = "";
+        for(Service service: services) {
+            if(service.getId().equals(id)) {
+                name += service.getName();
+            }
+        }
+        return name;
+    }
+
+    public Session getSession(String id) {
+        Session foundSession = null;
+        for(Session session: sessions) {
+            if(session.getSessionId() == (Integer.parseInt(id))) {
+                foundSession = session;
+            }
+        }
+        return foundSession;
+    }
+
+    public void generateClientReport(String dateReport) throws IOException {
+        LinkedList<Account> professionals = new LinkedList<>();
+        LinkedList<Account> members = new LinkedList<>();
+        LinkedList<Integer> consultations = new LinkedList<>();
+        LinkedList<Integer> pays = new LinkedList<>();
+        String file = "";
+        for(Confirmation confirm: this.confirmations) {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
+            String date = confirm.getDate();
+            String serviceId = confirm.getServiceId();
+            Session session = getSession(confirm.getSessionId());
+            Account professional = getAccount(confirm.getProfId());
+            Account member = getAccount(confirm.getMemberId());
+
+            String profReport = date + "\n" +
+                                confirm.getActualDate() + "\n" +
+                                member.getName() + "\n" +
+                                confirm.getProfReport() + "\n";
+            String memberReport = date + "\n" +
+                                  professional.getName() + "\n" +
+                                  getService(serviceId) + "\n";
+
+            file = professional.getName() + "-" + dateReport + ".txt";
+            if(professionals.contains(professional)) {
+                consultations.add(professionals.indexOf(professional), +1);
+                pays.add(professionals.indexOf(professional), +session.getPrice());
+                writer.write(profReport);
+            }else {
+                professionals.add(professional);
+                consultations.add(1);
+                pays.add(session.getPrice());
+                writer.write(professional.getInfosReport() + "\n" + profReport);
+            }
+
+            file = member.getName() + "-" + dateReport + ".txt";
+            if(members.contains(member)) {
+                writer.write(memberReport);
+            }else {
+                members.add(member);
+                writer.write(member.getInfosReport() + "\n" + memberReport);
+            }
+
+            if(confirm.equals(confirmations.getLast())) {
+                for(Account prof: professionals) {
+                    file = prof.getName() + "-" + dateReport + ".txt";
+                    writer.write("Le nombre de consultations est: " + consultations.get(professionals.indexOf(prof)) + "\n");
+                    writer.write("Le total des frais est: " + pays.get(professionals.indexOf(prof)) + "\n");
+                }
+            }
+            writer.close();
+        }
+    }
 }
