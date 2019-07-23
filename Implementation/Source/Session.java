@@ -7,6 +7,7 @@ public class Session extends DataRecord {
         return Integer.parseInt(data[9]);
     }
 
+    // TODO: generate sessionId
     public int getSessionId() {
         return Integer.parseInt(data[8]);
     }
