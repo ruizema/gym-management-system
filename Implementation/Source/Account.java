@@ -3,6 +3,8 @@ public class Account extends DataRecord {
     private String id;
     private boolean suspended = false;
 
+    private String type;
+
     public Account(String[] data) {
         super(data);
     }
@@ -23,6 +25,10 @@ public class Account extends DataRecord {
 
     public String getName() {
         return data[0];
+    }
+
+    public String getType() {
+        return type;
     }
 
     public String toString(String className) {

@@ -7,6 +7,23 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
+        System.out.println("Quel utilisateur voulez-vous simuler?\n" +
+                "1. Utilisateur sur application mobile\n" +
+                "2. Administrateur");
+        int input = scanner.nextInt();
+        switch (input) {
+            case 1:
+                loginMenu();
+                break;
+            case 2:
+                adminMenu();
+                break;
+            default:
+                System.out.println("Mauvais code...");
+        }
+    }
+
+    private static void adminMenu() throws IOException {
         boolean exit = false;
         do {
             mainMenu();
@@ -46,7 +63,7 @@ public class Main {
     }
 
     private static void loginMenu() {
-        System.out.println("\nIdentification de l'utilisateur:\n" +
+        System.out.println("\nIdentification de l'utilisateur\n" +
                 "Entrez votre courriel:");
         String email = scanner.nextLine();
         String[] response = dataCentre.login(email);

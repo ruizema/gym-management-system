@@ -10,10 +10,21 @@ import java.util.regex.Pattern;
 public class DataCentre {
 
     private Main main;
+    private HashMap<String, Account> accounts;
 
     public String[] login(String email) {
-        // TODO
-        return new String[3];
+        Account account = accounts.get(email);
+        String code = account == null ? "1" : account.isSuspended() ? "2" : "0";
+        if (!code.equals("1")) {
+            String name = account.getName();
+            String memberId = account.getId();
+            String type = account.getType();
+            return new String[]{code, name, memberId, type};
+        } else {
+            String[] output = new String[4];
+            output[0] = code;
+            return output;
+        }
     }
 
     public int validateId(String id) throws IOException {
@@ -32,6 +43,7 @@ public class DataCentre {
     }
 
     public LinkedList<DataRecord> readDataRecords(String dataType) throws IOException {
+        // TODO: no longer reading from file, instead it's from memory
         String filename = dataType.toLowerCase() + "s.txt";
         Scanner reader = new Scanner(new File(filename));
         int lineCount = 0;
@@ -75,6 +87,7 @@ public class DataCentre {
     }
 
     public int createDataRecord(String[] data, String dataType) throws IOException {
+        // TODO: no longer write to file, write to memory instead
         FileWriter writer = new FileWriter(dataType.toLowerCase() + "s.txt", true);
         DataRecord dataRecord;
         switch (dataType) {
