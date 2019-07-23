@@ -214,4 +214,6 @@ public class DataCentre {
                 "Nombre total de services: " + getSessions().length + '\n' +
                 "Total des frais: " + fees + '\n';
     }
+
+   // public 
 }

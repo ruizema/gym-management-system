@@ -32,7 +32,13 @@ public abstract class DataRecord {
                 "Code de la séance (7 chiffres)",
                 "Commentaires (100 caractères) (facultatif).",
             }, "Account", new String[]{
-                "Nom"
+                "Courriel",
+                "Nom du client(25 lettres)",
+                "Adresse du client (25 caractères)",
+                "Ville du client (14 caractères)",
+                "Province du client (2 lettres)",
+                "Code postal du client (6 caractères)",
+                "Status du client (Membre ou Professionnel)",
             }));
     String[] data;
 

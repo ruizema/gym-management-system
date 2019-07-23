@@ -25,6 +25,15 @@ public class Account extends DataRecord {
         return data[0];
     }
 
+    public String getInfosReport() {
+        String infos = "";
+        infos += data[1] + "\n" + id + "\n";
+        for(int i=2; i<data.length-1; i++){
+            infos += data[i] + "\n";
+        }
+        return infos;
+    }
+
     public String toString(String className) {
         String superString = super.toString(className);
         superString += "Numéro du membre (9 chiffres): " + id + "\n";
