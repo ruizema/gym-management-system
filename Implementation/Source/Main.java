@@ -150,7 +150,14 @@ public class Main {
         for (int i = 0; i < nbFields; i++) {
             System.out.println(DataRecord.getFieldNames(dataType)[i]);
             String field = scanner.nextLine();
+            // validate data
+            if (DataRecord.validation(dataType , field , i ) == true ) {
             data[i] = field;
+            }
+            else {
+            	System.out.println("Wrong data type");
+            }
+            
         }
         dataCentre.createDataRecord(data, dataType);
     }
