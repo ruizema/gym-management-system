@@ -1,5 +1,7 @@
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
@@ -271,11 +273,20 @@ public class DataCentre {
             if(confirm.equals(confirmations.getLast())) {
                 for(Account prof: professionals) {
                     file = prof.getName() + "-" + dateReport + ".txt";
-                    writer.write("Le nombre de consultations est: " + consultations.get(professionals.indexOf(prof)) + "\n");
+                    writer.write("\nLe nombre de consultations est: " + consultations.get(professionals.indexOf(prof)) + "\n");
                     writer.write("Le total des frais est: " + pays.get(professionals.indexOf(prof)) + "\n");
                 }
             }
             writer.close();
         }
+    }
+
+    public void viewClientReport(String id, String dateReport) throws IOException{
+        BufferedReader reader = new BufferedReader(new FileReader(getAccount(id).getName() + "-" + dateReport + ".txt")); 
+        String st; 
+        while ((st = reader.readLine()) != null) {
+        System.out.println(st); 
+        }
+        reader.close();
     }
 }
