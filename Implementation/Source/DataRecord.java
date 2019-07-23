@@ -61,4 +61,42 @@ public abstract class DataRecord {
         }
         return output;
     }
+    
+    public boolean validation (String dataType , String field , int i) {
+    	String[] DataRecord.getFieldNames(dataType);
+    	// parse whats in parenthesis
+    	String[] parse = DataRecord.getFieldNames(dataType)[i].split("[()]+");
+    	String[] restriction = parse[1].split("[ ]+");
+    	
+    	switch (restriction[1]) {
+	        case "chiffres":
+	        	 // check if only int       	
+	        	try {
+	        		 	int result = Integer.parseInt(field);
+	        		  } catch (NumberFormatException e) {
+	        		    return false;
+	        		  }
+	        	 // check if lenght is less than max
+	        	if ( String.valueOf(result).length()<= restriction[0] )
+	        	{
+	        		return true;
+	        	}
+	            break;
+	        case "lettres":
+	        	if(field.matches("[a-zA-Z]+") == true) {
+	        		if(field.length() <= restriction[0]) {
+	        			return true;
+	        		}
+	        	}
+	        	return false;
+	        	break;
+	        case "caractères":
+	        	if(field.length() <= restriction[0]) {
+	        		return true;
+	        	}
+	        	return false;
+	        	break;
+
+    	
+    }
 }
