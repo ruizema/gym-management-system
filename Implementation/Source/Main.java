@@ -7,19 +7,24 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        System.out.println("Quel utilisateur voulez-vous simuler?\n" +
-                "1. Utilisateur sur application mobile\n" +
-                "2. Administrateur");
-        int input = scanner.nextInt();
-        switch (input) {
-            case 1:
-                loginMenu();
-                break;
-            case 2:
-                adminMenu();
-                break;
-            default:
-                System.out.println("Mauvais code...");
+        boolean quit = false;
+        while (!quit) {
+            System.out.println("Quel utilisateur voulez-vous simuler?\n" +
+                    "1. Utilisateur sur application mobile\n" +
+                    "2. Administrateur");
+            int input = scanner.nextInt();
+            scanner.nextLine();
+            switch (input) {
+                case 1:
+                    loginMenu();
+                    break;
+                case 2:
+                    adminMenu();
+                    break;
+                default:
+                    System.out.println("Mauvais code...");
+                    quit = true;
+            }
         }
     }
 
@@ -89,10 +94,12 @@ public class Main {
 
     private static void memberMenu() {
         // TODO
+        System.out.println("PLACEHOLDER");
     }
 
     private static void professionalMenu() {
         // TODO
+        System.out.println("PLACEHOLDER");
     }
 
     private static void mainMenu() {
@@ -106,7 +113,7 @@ public class Main {
                 "6. Consultation des inscriptions\n" +
                 "7. Confirmation de la présence\n" +
                 "8. Rapport de comptable\n" +
-                "q: QUITTER");
+                "q: RETOURNER");
     }
 
     private static void gymAccess() throws IOException {
@@ -135,17 +142,7 @@ public class Main {
             String field = scanner.nextLine();
             data[i] = field;
         }
-        int returnInt = dataCentre.createDataRecord(data, dataType);
-
-        if (returnInt == -1) {
-            System.out.println("Création réussie!");
-        } else if (dataType.equals("Account")) {
-            String returnIntToString = String.valueOf(returnInt);
-            if (returnIntToString.length() < 9) {
-                returnIntToString = "0".repeat(9 - returnIntToString.length()) + returnIntToString;
-            }
-            System.out.println("Le numéro du membre est " + returnIntToString);
-        }
+        dataCentre.createDataRecord(data, dataType);
     }
 
     private static void viewSessions() throws IOException {

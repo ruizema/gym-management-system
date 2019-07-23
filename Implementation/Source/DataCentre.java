@@ -9,8 +9,10 @@ import java.util.regex.Pattern;
 
 public class DataCentre {
 
-    private Main main;
-    private HashMap<String, Account> accounts;
+    private HashMap<String, Account> accounts = new HashMap<>();
+    private LinkedList<Session> sessions = new LinkedList<>();
+    private LinkedList<Confirmation> confirmations = new LinkedList<>();
+    private LinkedList<Registration> registrations = new LinkedList<>();
 
     public String[] login(String email) {
         Account account = accounts.get(email);
@@ -28,8 +30,8 @@ public class DataCentre {
     }
 
     public int validateId(String id) throws IOException {
-        LinkedList<DataRecord> accounts = readDataRecords("Account");
-        for (DataRecord account : accounts) {
+        LinkedList accounts = getDataRecords("Account");
+        for (Object account : accounts) {
             Account properAccount = (Account) account;
             if (properAccount.getId().equals(id)) {
                 if (properAccount.isSuspended()) {
@@ -42,107 +44,65 @@ public class DataCentre {
         return 1;
     }
 
-    public LinkedList<DataRecord> readDataRecords(String dataType) throws IOException {
-        // TODO: no longer reading from file, instead it's from memory
-        String filename = dataType.toLowerCase() + "s.txt";
-        Scanner reader = new Scanner(new File(filename));
-        int lineCount = 0;
-        LinkedList<DataRecord> dataRecords = new LinkedList<>();
-        String[] data = {};
-        while (reader.hasNextLine()) {
-            String line = reader.nextLine();
-            int nbFields = DataRecord.getFieldNames(dataType).length;
-            // Accounts have 2 extra fields beyond the original input
-            if (dataType.equals("Account")) {
-                nbFields += 2;
-            }
-            int lineNumber = lineCount % (nbFields + 1);
-            if (lineNumber == 0 || !reader.hasNextLine()) {
-                if (lineCount != 0) {
-                    switch (dataType) {
-                        case "Account":
-                            Account account = new Account(data);
-                            account.setId(data[1]);
-                            dataRecords.add(account);
-                            break;
-                        case "Session":
-                            dataRecords.add(new Session(data));
-                            break;
-                        case "Registration":
-                            dataRecords.add(new Registration(data));
-                            break;
-                        case "Confirmation":
-                            dataRecords.add(new Confirmation(data));
-                            break;
-                    }
-                }
-                data = new String[nbFields];
-            } else if (!line.equals("")) {
-                data[lineNumber - 1] = line.split(": ")[1];
-            }
-            lineCount++;
+    public LinkedList getDataRecords(String dataType) throws IOException {
+        switch (dataType) {
+            case "Account":
+                return (LinkedList) accounts.values();
+            case "Session":
+                return sessions;
+            case "Registration":
+                return registrations;
+            case "Confirmation":
+                return confirmations;
         }
-        reader.close();
-        return dataRecords;
+        return null;
     }
 
-    public int createDataRecord(String[] data, String dataType) throws IOException {
-        // TODO: no longer write to file, write to memory instead
-        FileWriter writer = new FileWriter(dataType.toLowerCase() + "s.txt", true);
-        DataRecord dataRecord;
+    public void createDataRecord(String[] data, String dataType) {
         switch (dataType) {
             case "Session":
-                dataRecord = new Session(data);
+                sessions.add(new Session(data));
                 break;
             case "Registration":
-                dataRecord = new Registration(data);
+                registrations.add(new Registration(data));
                 int sessionId = Integer.parseInt(data[5]);
-                for (DataRecord session : readDataRecords("Session")) {
-                    Session properSession = (Session) session;
-                    if (sessionId == properSession.getSessionId()) {
-                        System.out.println("Le montant à payer est de " + properSession.getPrice() + "$.");
+                for (Session session : sessions) {
+                    if (sessionId == session.getSessionId()) {
+                        System.out.println("Le montant à payer est de " + session.getPrice() + "$.");
                     }
                 }
                 break;
             case "Confirmation":
-                dataRecord = new Confirmation(data);
+                confirmations.add(new Confirmation(data));
                 break;
             case "Account":
-                dataRecord = new Account(data);
-                ((Account) dataRecord).generateId();
+                Account account = new Account(data);
+                account.generateId();
+                accounts.put(account.getEmail(), account);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + dataType);
         }
-        writer.write(dataRecord.toString(dataType));
-        writer.close();
-        // return the id if an account, -1 otherwise, -2 if a field is wrong
-        if (dataType.equals("Account")) {
-            System.out.println("Veuillez payer les frais d'adhésion!");
-            return Integer.parseInt(((Account) dataRecord).getId());
-        } else {
-            return -1;
-        }
     }
 
     public String[] getSessions() throws IOException {
-        LinkedList<DataRecord> sessions = readDataRecords("Session");
+        LinkedList sessions = getDataRecords("Session");
         String[] output = new String[sessions.size()];
         int i = 0;
-        for (DataRecord session : sessions) {
-            output[i] = session.toString("Session");
+        for (Object session : sessions) {
+            output[i] = ((Session) session).toString("Session");
             i++;
         }
         return output;
     }
 
     public String[] getRegistrations(int employeeId) throws IOException {
-        LinkedList<DataRecord> registrations = readDataRecords("Registration");
+        LinkedList registrations = getDataRecords("Registration");
         String[] output = new String[registrations.size()];
         int outputIndex = 0;
-        for (DataRecord registration : registrations) {
+        for (Object registration : registrations) {
             if (((Registration) registration).getEmployeeId() == employeeId) {
-                output[outputIndex] = registration.toString("Registration");
+                output[outputIndex] = ((Registration) registration).toString("Registration");
                 outputIndex++;
             }
         }
@@ -150,8 +110,8 @@ public class DataCentre {
     }
 
     public boolean validatePresence(String memberId, String serviceId, String sessionId) throws IOException {
-        LinkedList<DataRecord> registrations = readDataRecords("Registration");
-        for (DataRecord registration : registrations) {
+        LinkedList registrations = getDataRecords("Registration");
+        for (Object registration : registrations) {
             if (Arrays.equals(((Registration) registration).getPresenceInformation(), new String[]{memberId, serviceId, sessionId})) {
                 String[] data = new String[6];
                 data[0] = "28-06-2019 19:45:30";
@@ -175,7 +135,7 @@ public class DataCentre {
                 String id = line.split("\t")[0];
                 String toPay = line.split("\t")[2];
                 String name = null;
-                for (DataRecord account : readDataRecords("Account")) {
+                for (Object account : getDataRecords("Account")) {
                     if (((Account) account).getId().equals(id)) {
                         name = ((Account) account).getName();
                     }
@@ -194,7 +154,7 @@ public class DataCentre {
     }
 
     public void updateAccounts(String accountId, boolean suspended) throws IOException {
-        for (DataRecord account : readDataRecords("Account")) {
+        for (Object account : getDataRecords("Account")) {
             if (((Account) account).getId().equals(accountId)) {
                 ((Account) account).setSuspended(suspended);
             }
