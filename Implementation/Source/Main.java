@@ -59,6 +59,12 @@ public class Main {
                     case "8":
                         generateServiceReport();
                         break;
+                    case "9":
+                        generateClientReport();
+                        break;
+                    case "10":
+                        createDataRecord("Service");
+                        break;
                     case "q":
                         exit = true;
                         break;
@@ -113,6 +119,8 @@ public class Main {
                 "6. Consultation des inscriptions\n" +
                 "7. Confirmation de la présence\n" +
                 "8. Rapport de comptable\n" +
+                "9. Rapport des membres et professionnels\n" +
+                "10. Création d'un service\n" +
                 "q: RETOURNER");
     }
 
@@ -181,5 +189,11 @@ public class Main {
 
     private static void generateServiceReport() throws IOException {
         System.out.println(dataCentre.generateServiceReport());
+    }
+
+    private static void generateClientReport() throws IOException {
+        System.out.println("Veuillez entrer la date (JJ-MM-AAAA)");
+        String date = scanner.nextLine();
+        dataCentre.generateClientReport(date);
     }
 }
