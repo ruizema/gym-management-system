@@ -64,7 +64,7 @@ public abstract class DataRecord {
         return output;
     }
     
-    public boolean validation (String dataType , String field , int i) {
+    public static boolean validation (String dataType , String field , int i) {
     	// parse what is in parenthesis
     	String[] parse = getFieldNames(dataType)[i].split("[()]+");
     	String[] restriction = parse[1].split("[ ]+");
