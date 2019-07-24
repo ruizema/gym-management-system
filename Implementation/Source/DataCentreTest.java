@@ -4,16 +4,36 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class DataCentreTest {
-    Account a;
+    DataCentre dataCenter;
+    String[] dataA;
+    String[] dataB;
+    String[] dataC;
+    String[] dataD;
+    String[] dataE;
+
+/*    Account a;
     Session b;
     Session c;
     Service d;
-    Registration e;
+    Registration e;*/
 
     @Before
     public void setUp() {
         String[] dataA = {"ab@gmail.com","ZY","999 moland","Tuni","MO","5G5G5G","M"};
         a = new Account(dataA);
+
+        String[] dataB = {
+                "20-07-2019 12:59:59",
+                "20-07-2019",
+                "20-08-2019",
+                "19:00",
+                "L, J, V",
+                "10",
+                "123456789",
+                d.getId(),
+                "6549872",
+                "135.45",
+                "Apporter vos tapis."};
 
         String[] dataD = {"yoga"};
         d = new Service(dataD);

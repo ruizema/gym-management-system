@@ -6,17 +6,21 @@ import org.junit.Test;
 
 public class AccountTest {
     Account a;
+    String id;
 
     @Before
     public void setUp() {
         String[] data = {"ab@gmail.com","ZY","999 moland","Tuni","MO","5G5G5G","M"};
         a = new Account(data);
+        id = a.getId();
     }
 
-/*********TODO*********/
     @Test
-    public void testToStringString() {
-        fail("Not yet implemented");
+    public void testGetInfosReport() {
+        String infos = a.getInfosReport();
+        String expected = "ZY\n" + id + "\n999 moland\nTuni\nMO\n5G5G5G\n";
+
+        assertEquals(expected, infos);
     }
 
     @Test
@@ -24,6 +28,6 @@ public class AccountTest {
         a.generateId();
         String id = a.getId();
 
-        assertEquals("number of characters in ID", 7, id.length());
+        assertEquals("Number of characters in ID", 9, id.length());
     }
 }
