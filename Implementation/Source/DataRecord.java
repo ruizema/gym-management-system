@@ -166,6 +166,11 @@ public abstract class DataRecord {
         return true;
     }
 
+    /**Method to validate the format of the date and time
+     * 
+     *@param inDate The input date
+     *@return The truth value of the format of date and time
+     */
     public static boolean isValidDateTime(String inDate) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         dateFormat.setLenient(false);
@@ -177,6 +182,11 @@ public abstract class DataRecord {
         return true;
     }
 
+    /**Method to validate the format of the date
+     * 
+     *@param inDate The input date
+     *@return The truth value of the format of date
+     */
     public static boolean isValidDate(String inDate) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         dateFormat.setLenient(false);
@@ -187,6 +197,12 @@ public abstract class DataRecord {
         }
         return true;
     }
+
+    /**Method to validate the format of the time
+     * 
+     *@param inDate The input date
+     *@return The truth value of the format of time
+     */
     public static boolean isValidTime(String inDate) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
         dateFormat.setLenient(false);
