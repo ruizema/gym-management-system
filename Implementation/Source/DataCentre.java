@@ -68,7 +68,7 @@ public class DataCentre {
     public LinkedList getDataRecords(String dataType) throws IOException {
         switch (dataType) {
             case "Account":
-                return (LinkedList) accounts.values();
+                return new LinkedList<Object>(accounts.values());
             case "Session":
                 return sessions;
             case "Registration":
@@ -93,9 +93,9 @@ public class DataCentre {
                 break;
             case "Registration":
                 registrations.add(new Registration(data));
-                int sessionId = Integer.parseInt(data[5]);
+                String sessionId = data[5];
                 for (Session session : sessions) {
-                    if (sessionId == Integer.parseInt(session.getSessionId())) {
+                    if (sessionId.equals(session.getSessionId())) {
                         System.out.println("Le montant à payer est de " + session.getPrice() + "$.");
                     }
                 }
@@ -164,7 +164,7 @@ public class DataCentre {
         for (Object registration : registrations) {
             if (Arrays.equals(((Registration) registration).getPresenceInformation(), new String[]{memberId, serviceId, sessionId})) {
                 String[] data = new String[6];
-                data[0] = "28-06-2019 19:45:30";
+                data[0] = "28-06-2019 19:45:30"; // TODO: Remove hard-coded
                 data[1] = String.valueOf(((Registration) registration).getEmployeeId());
                 data[2] = memberId;
                 data[3] = serviceId;
@@ -229,24 +229,25 @@ public class DataCentre {
     public String generateServiceReport() throws IOException {
         String[] sessions = getSessions();
         LinkedList<String> lines = new LinkedList<>();
-        HashMap<String, int[]> employeeCounts = new HashMap<>();
+        HashMap<String, double[]> employeeCounts = new HashMap<>();
         for (String session : sessions) {
             String[] split = session.split("\n");
             String employeeId = split[7].split(": ")[1];
-            int fee = Integer.parseInt(split[10].split(": ")[1]);
-            int[] current = employeeCounts.getOrDefault(employeeId, new int[]{0, 0});
+            double fee = Double.parseDouble(split[10].split(": ")[1]);
+            double[] current = employeeCounts.getOrDefault(employeeId, new double[]{0, 0});
             current[0]++;
             current[1] += fee;
             employeeCounts.put(employeeId, current);
         }
-        int fees = 0;
+        double fees = 0;
         for (String employeeId : employeeCounts.keySet()) {
-            int fee = employeeCounts.get(employeeId)[1];
+            double fee = employeeCounts.get(employeeId)[1];
             fees += fee;
             String line = employeeId + '\t' + employeeCounts.get(employeeId)[0] + '\t' + fee;
             lines.add(line);
         }
-        return "Code du professionnel\tNombre de services\tFrais à payer\n" +
+        return  "RAPPORT DE SYNTHESE POUR LE GERANT\n" +
+                "Code du professionnel\tNombre de services\tFrais à payer\n" +
                 String.join("\n", lines) + '\n' +
                 "Nombre total de professionnels qui ont fourni des services: " + employeeCounts.keySet().size() + '\n' +
                 "Nombre total de services: " + getSessions().length + '\n' +
@@ -300,6 +301,8 @@ public class DataCentre {
         return foundSession;
     }
 
+
+
     /**Method to write the reports for each member that benefited a service
      * and professional that offered the service
      * 
@@ -307,55 +310,60 @@ public class DataCentre {
      *@throws IOException if dateReport is not in a right format
      */
     // TODO: write to memory (AND file)
+    // TODO: send to Accounts & write to files
     public void generateClientReport(String dateReport) throws IOException {
         LinkedList<Account> professionals = new LinkedList<>();
         LinkedList<Account> members = new LinkedList<>();
         LinkedList<Integer> consultations = new LinkedList<>();
-        LinkedList<Integer> pays = new LinkedList<>();
-        String file = "";
+        LinkedList<Double> pays = new LinkedList<>();
+        HashMap<Account, String> memberReports = new HashMap<>();
+        HashMap<Account, String> profReports = new HashMap<>();
+        HashMap<Account, Double[]> profCountPay = new HashMap<>();
         for (Confirmation confirm: this.confirmations) {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
+            Account member = getAccount(confirm.getMemberId());
+            Account professional = getAccount(confirm.getProfId());
             String date = confirm.getDate();
             String serviceId = confirm.getServiceId();
             Session session = getSession(confirm.getSessionId());
-            Account professional = getAccount(confirm.getProfId());
-            Account member = getAccount(confirm.getMemberId());
 
-            String profReport = date + "\n" +
-                                confirm.getActualDate() + "\n" +
-                                member.getName() + "\n" +
-                                confirm.getProfReport() + "\n";
-            String memberReport = date + "\n" +
-                                  professional.getName() + "\n" +
-                                  getService(serviceId) + "\n";
-
-            file = professional.getName() + "-" + dateReport + ".txt";
-            if(professionals.contains(professional)) {
-                consultations.add(professionals.indexOf(professional), +1);
-                pays.add(professionals.indexOf(professional), +session.getPrice());
-                writer.write(profReport);
-            }else {
-                professionals.add(professional);
-                consultations.add(1);
-                pays.add(session.getPrice());
-                writer.write(professional.getInfosReport() + "\n" + profReport);
+            memberReports.putIfAbsent(member, member.getInfosReport());
+            profReports.putIfAbsent(professional, professional.getInfosReport());
+            if (profCountPay.containsKey(professional)) {
+                profCountPay.put(professional, new Double[]{++profCountPay.get(professional)[0], profCountPay.get(professional)[1] + session.getPrice()});
+            } else {
+                profCountPay.putIfAbsent(professional, new Double[]{1d, session.getPrice()});
             }
 
-            file = member.getName() + "-" + dateReport + ".txt";
-            if(members.contains(member)) {
-                writer.write(memberReport);
-            }else {
-                members.add(member);
-                writer.write(member.getInfosReport() + "\n" + memberReport);
-            }
+            String profReport = "\n" + date + "\n" +
+                    confirm.getActualDate() + "\n" +
+                    member.getName() + "\n" +
+                    confirm.getProfReport() + "\n";
+            String memberReport = "\n" + date + "\n" +
+                    professional.getName() + "\n" +
+                    getService(serviceId) + "\n";
 
-            if(confirm.equals(confirmations.getLast())) {
-                for(Account prof: professionals) {
-                    file = prof.getName() + "-" + dateReport + ".txt";
-                    writer.write("\nLe nombre de consultations est: " + consultations.get(professionals.indexOf(prof)) + "\n");
-                    writer.write("Le total des frais est: " + pays.get(professionals.indexOf(prof)) + "\n");
-                }
+            memberReports.put(member, memberReports.get(member) + memberReport);
+            profReports.put(professional, profReports.get(professional) + profReport);
+
+            pays.add(session.getPrice());
+        }
+
+        // add fees info
+        for (Account prof : profReports.keySet()) {
+            String extra = "\nLe nombre de consultations est: " + profCountPay.get(prof)[0] + "\n" +
+                    "Le total des frais est: " + profCountPay.get(prof)[1] + "\n";
+            profReports.put(prof, profReports.get(prof) + extra);
+        }
+        // Writing out reports & sending them to Accounts
+        for (Account account : accounts.values()) {
+            if (profReports.containsKey(account)) {
+                account.addReport(profReports.get(account));
+            } else {
+                account.addReport(memberReports.get(account));
             }
+            String filename = account.getId() + "_report.txt";
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
+            writer.write(account.getReport());
             writer.close();
         }
     }
@@ -363,6 +371,7 @@ public class DataCentre {
     public void testing() throws IOException {
         // create member account
         createDataRecord(new String[]{"mmrz33@gmail.com", "Rui Ze Ma", "8110 Naples", "Brossard", "QC", "J4Y2R6", "M"}, "Account");
+        createDataRecord(new String[]{"mmrz33@live.com", "Other Member", "8110 Naples", "Brossard", "QC", "J4Y2R6", "M"}, "Account");
         // create professional account
         createDataRecord(new String[]{"abcde@gmail.com", "Bob Lol", "1234 Sherbrooke", "Montreal", "QC", "H4B2T6", "P"}, "Account");
         // create service
@@ -370,13 +379,15 @@ public class DataCentre {
         // create session
         String serviceId = services.getFirst().getId();
         String profId = accounts.get("abcde@gmail.com").getId();
-        createDataRecord(new String[]{"23-07-2019 19:54:23", "25-07-2019", "06-08-2019", "15:45", "L", profId, serviceId, "", ""}, "Session");
+        createDataRecord(new String[]{"23-07-2019 19:54:23", "25-07-2019", "06-08-2019", "15:45", "L", "25", profId, serviceId, "6969420", "123.45", ""}, "Session");
         // register to session
         String userId = accounts.get("mmrz33@gmail.com").getId();
         String sessionId = sessions.getFirst().getSessionId();
+        String otherUserId = accounts.get("mmrz33@live.com").getId();
         createDataRecord(new String[]{"23-07-2019 19:54:23", "25-07-2019", profId, userId, serviceId, sessionId, ""}, "Registration");
+        createDataRecord(new String[]{"23-07-2019 19:54:23", "25-07-2019", profId, otherUserId, serviceId, sessionId, ""}, "Registration");
         // confirm presence
-        if (validatePresence(userId, serviceId, sessionId)) {
+        if (validatePresence(userId, serviceId, sessionId) && validatePresence(otherUserId, serviceId, sessionId)) {
             System.out.println("Presence confirmed!");
         } else {
             System.out.println("PRESENCE AUTHENTIFICATION FAILED");
@@ -404,5 +415,6 @@ public class DataCentre {
         System.out.println(st); 
         }
         reader.close();
+
     }
 }

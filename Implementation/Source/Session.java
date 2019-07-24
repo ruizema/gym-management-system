@@ -14,8 +14,8 @@ public class Session extends DataRecord {
      * 
      *@return Price of session
      */
-    public int getPrice() {
-        return Integer.parseInt(data[9]);
+    public double getPrice() {
+        return Double.parseDouble(data[9]);
     }
 
     /**Method to access session ID
