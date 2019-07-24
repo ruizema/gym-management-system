@@ -1,6 +1,8 @@
 import java.io.IOException;
 
 public class Session extends DataRecord {
+    private String id;
+
 
     /**Constructor of Session
      * 
@@ -8,6 +10,7 @@ public class Session extends DataRecord {
      */
     public Session(String[] data) {
         super(data);
+        id = data[7].substring(0, 3) + data[8].substring(0, 2) + data[6].substring(data[6].length() - 2);
     }
 
     /**Method to access price of a session
@@ -22,8 +25,7 @@ public class Session extends DataRecord {
      * 
      *@return Session ID
      */
-    // TODO: generate sessionId & overwrite whatever the user entered lmao
     public String getSessionId() {
-        return data[8];
+        return id;
     }
 }

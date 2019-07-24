@@ -37,7 +37,7 @@ public abstract class DataRecord {
                 "Code de la séance (7 chiffres)",
                 "Commentaires (100 caractères) (facultatif).",
             }, "Account", new String[]{
-                "Courriel",
+                "Courriel (email)",
                 "Nom du client(25 lettres)",
                 "Adresse du client (25 caractères)",
                 "Ville du client (14 caractères)",
@@ -104,7 +104,7 @@ public abstract class DataRecord {
                 return false;
                
             case "lettres":
-            	if(field.matches("[a-zA-Z]+") == true) {
+            	if(field.matches("[a-zA-Z]+")) {
             		if(field.length() <= Integer.parseInt(restriction[0])) {
             			return true;
             		}
@@ -128,8 +128,6 @@ public abstract class DataRecord {
     				return isValidDateTime(field);
     			else
     				return isValidDate(field);
-
-    			
     		case "xxx.xx":
     			try {
 	                Double num = Double.parseDouble(field);

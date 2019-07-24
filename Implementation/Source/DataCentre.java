@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -165,7 +167,7 @@ public class DataCentre {
         for (Object registration : registrations) {
             if (Arrays.equals(((Registration) registration).getPresenceInformation(), new String[]{memberId, serviceId, sessionId})) {
                 String[] data = new String[6];
-                data[0] = "28-06-2019 19:45:30"; // TODO: Remove hard-coded
+                data[0] = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
                 data[1] = String.valueOf(((Registration) registration).getEmployeeId());
                 data[2] = memberId;
                 data[3] = serviceId;
@@ -261,7 +263,7 @@ public class DataCentre {
      *@return The Account found or nothing
      *@throws IOException if wrong entries
      */
-    private Account getAccount(String id) throws IOException {
+    public Account getAccount(String id) throws IOException {
         LinkedList accounts = getDataRecords("Account");
         Account foundAccount = null;
         for(Object account: accounts) {
@@ -308,8 +310,6 @@ public class DataCentre {
      *@param dateReport The date that the report is generated
      *@throws IOException if dateReport is not in a right format
      */
-    // TODO: write to memory (AND file)
-    // TODO: send to Accounts & write to files
     public void generateClientReport(String dateReport) throws IOException {
         LinkedList<Account> professionals = new LinkedList<>();
         LinkedList<Account> members = new LinkedList<>();
@@ -407,12 +407,7 @@ public class DataCentre {
      *@param dateReport Date when the report is generated
      *@throws IOException if input is wrong
      */
-    public void viewClientReport(String id, String dateReport) throws IOException{
-        BufferedReader reader = new BufferedReader(new FileReader(getAccount(id).getName() + "-" + dateReport + ".txt"));
-        String st; 
-        while ((st = reader.readLine()) != null) {
-        System.out.println(st); 
-        }
-        reader.close();
+    public void viewClientReport(String id, String dateReport) throws IOException {
+        System.out.println(getAccount(id).getReport());
     }
 }

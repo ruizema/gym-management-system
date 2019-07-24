@@ -116,12 +116,12 @@ public class Main {
      * 
      *@throws IOException if input from user is incorrect
      */
-    // TODO: view report
     private static void memberMenu() throws IOException {
         System.out.println("\nMenu du membre\n" +
                 "---- Choisissez une option ----\n" +
                 "1. Consultation du Répertoire des Services\n" +
                 "2. Inscription à une séance\n" +
+                "3. Voir facture\n" +
                 "q: RETOURNER");
         boolean exit = false;
         while (!exit) {
@@ -131,6 +131,9 @@ public class Main {
                     break;
                 case "2":
                     createDataRecord("Registration");
+                    break;
+                case "3":
+                    viewSessionReport();
                     break;
                 case "q":
                     exit = true;
@@ -143,13 +146,13 @@ public class Main {
      * 
      *@throws IOException if input from user is incorrect
      */
-    // TODO: view report
     private static void professionalMenu() throws IOException {
         System.out.println("\nMenu du professionnel\n" +
                 "---- Choisissez une option ----\n" +
                 "1. Consultation du Répertoire des Services\n" +
                 "2. Consultation des inscriptions\n" +
                 "3. Confirmation des présences\n" +
+                "4. Voir facture\n" +
                 "q: RETOURNER");
         boolean exit = false;
         while (!exit) {
@@ -162,6 +165,9 @@ public class Main {
                     break;
                 case "3":
                     confirmPresence();
+                    break;
+                case "4":
+                    viewSessionReport();
                     break;
                 case "q":
                     exit = true;
@@ -182,7 +188,7 @@ public class Main {
             String field = scanner.nextLine();
             // validate data
             if (DataRecord.validation(dataType, field, i)) {
-            data[i] = field;
+                data[i] = field;
             }
             else {
             	System.out.println("Wrong data type");
@@ -220,7 +226,6 @@ public class Main {
      *@throws IOException if input is wrong
      */
     private static void confirmPresence() throws IOException {
-        // TODO: Update
         System.out.println("Entrez le numéro du membre");
         String memberId = scanner.nextLine();
         if (dataCentre.validateId(memberId) == 0) {
@@ -262,11 +267,15 @@ public class Main {
      * 
      *@throws IOException if input is wrong
      */
-    private static void viewSessionReport() throws IOException{
+    private static void viewSessionReport() throws IOException {
         System.out.println("Entrez votre numéro de membre");
         String id = scanner.nextLine();
         System.out.println("Entrez la date (JJ-MM-AAAA)");
         String date = scanner.nextLine();
-        dataCentre.viewClientReport(id, date);
+        try {
+            dataCentre.viewClientReport(id, date);
+        } catch (Exception e) {
+            System.out.println("Aucun rapport disponible.");
+        }
     }
 }
