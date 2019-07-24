@@ -257,8 +257,6 @@ public class Main {
         String date = scanner.nextLine();
         dataCentre.generateClientReport(date);
     }
-<<<<<<< HEAD
-=======
 
     /**Function allowing to consult the sessions report for an individual
      * 
@@ -271,5 +269,4 @@ public class Main {
         String date = scanner.nextLine();
         dataCentre.viewClientReport(id, date);
     }
->>>>>>> 6cb92d3ad25f4ffdca7c4ef65bd60fd18ffb6812
 }

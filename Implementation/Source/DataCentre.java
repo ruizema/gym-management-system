@@ -1,7 +1,4 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -93,11 +90,7 @@ public class DataCentre {
                 registrations.add(new Registration(data));
                 String sessionId = data[5];
                 for (Session session : sessions) {
-<<<<<<< HEAD
                     if (sessionId.equals(session.getSessionId())) {
-=======
-                    if (sessionId == Integer.parseInt(session.getSessionId())) {
->>>>>>> 6cb92d3ad25f4ffdca7c4ef65bd60fd18ffb6812
                         System.out.println("Le montant à payer est de " + session.getPrice() + "$.");
                     }
                 }
@@ -303,9 +296,7 @@ public class DataCentre {
         return foundSession;
     }
 
-<<<<<<< HEAD
     // TODO: send to Accounts & write to files
-=======
     /**Method to write the reports for each member that benefited a service
      * and professional that offered the service
      * 
@@ -313,7 +304,6 @@ public class DataCentre {
      *@throws IOException if dateReport is not in a right format
      */
     // TODO: write to memory (AND file)
->>>>>>> 6cb92d3ad25f4ffdca7c4ef65bd60fd18ffb6812
     public void generateClientReport(String dateReport) throws IOException {
         LinkedList<Account> professionals = new LinkedList<>();
         LinkedList<Account> members = new LinkedList<>();
@@ -403,8 +393,6 @@ public class DataCentre {
 
     public static void main(String[] args) throws IOException {
         (new DataCentre()).testing();
-<<<<<<< HEAD
-=======
     }
 
     /**Method read files created in report for services use
@@ -414,12 +402,11 @@ public class DataCentre {
      *@throws IOException if input is wrong
      */
     public void viewClientReport(String id, String dateReport) throws IOException{
-        BufferedReader reader = new BufferedReader(new FileReader(getAccount(id).getName() + "-" + dateReport + ".txt")); 
+        BufferedReader reader = new BufferedReader(new FileReader(getAccount(id).getName() + "-" + dateReport + ".txt"));
         String st; 
         while ((st = reader.readLine()) != null) {
         System.out.println(st); 
         }
         reader.close();
->>>>>>> 6cb92d3ad25f4ffdca7c4ef65bd60fd18ffb6812
     }
 }
