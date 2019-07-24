@@ -1,0 +1,40 @@
+﻿# MANUEL D'UTILISATEUR
+
+- Pour commencer, choisissez le type d'utilisateur vous êtes.
+
+- Pour les nouveaux membres et professionnels, assurez-vous de vous avoir inscrit au #GYM auprès de l'agent avant de commencer d'utiliser les services de l'application. 
+
+- Si l'application vient juste d'être ouvrir, mieux vaut attendre que l'administrateur ajoute des données dans le Centre de Données afin de pouvoir utiliser l'application efficacement.
+
+********************* ADMINISTRATEUR ******************************************
+
+- Choisissez une option du menu qui s'offre à vous en entrant au clavier le chiffre ou nombre de l'option choisi suivi du ENTER.
+
+- Pour la vérification de l'accès, le système vous envoyera la validité du membre à accéder l'établissement du #GYM. Si le compte est suspendu, il vous indiquera le solde en déficience du membre. 
+
+- Pour toutes créations de comptes, services, séances, inscriptions à une séance et pour la confirmation de présence à une séance, veuillez entrer les informations demandées par le système une entrée/donnée à la fois dans les formats indiqués, suivi du ENTER. Les données s'enregistreront dans le système par la suite et il vous redirigera vers le menu principal de l'administrateur.
+
+- Vous avez aussi le pouvoir de confirmer la présence des membres à une séance et de les assister durant leur inscription à celle-cis. Il y a une option pour visualiser l’ensemble des services et séances offertes.
+
+- Pour les rapports hebdomadaires ou occasionnels, le système s'occupera de générer les fichiers. Il vous restera à diriger les fichiers, s'il le faut, au bon endroit.
+
+- Pour la génération des fichiers des rapports hebdomadaires des membres et professionnels, le système vous demandera d’entrer une date dans un format précis. Lorsque vous pesez ENTER, les fichiers se créeront.
+
+************************* MEMBRE **********************************************
+
+- Authentifiez-vous sur l'application mobile de #GYM avec votre adresse courriel. Le système confirmera la validité de votre identification. S'il y a échec de l'authentification, adressez-vous à un agent en personne.
+
+- Une fois dedans, l'application affichera votre nom, votre numéro de membre et votre code QR qui permet l'accès au tourniquet de l'établissement.
+
+- Vous pouvez aussi choisir une des options qui s'offre à vous au menu du membre en entrant le chiffre correspondant au clavier suivi du ENTER.
+
+- Vous pouvez consulter l'ensemble des séances offertes à vous et sélectionner pour vous inscrire à une. Le système enregistrera votre inscription et affichera le montant à payer.
+
+*********************** PROFESSIONNEL *****************************************
+
+- Authentifiez-vous sur l'application mobile de #GYM avec votre adresse courriel. Le système confirmera la validité de votre identification. S'il y a échec de l'authentification, adressez-vous à un agent en personne.
+
+- Choisissez ensuite une des options qui s'offre à vous en appuyant sur la touche correspondante au chiffre de l'option suivi du ENTER.
+
+- Vous pouvez consulter la liste des inscriptions à vos séances sur l'application et confirmer les présences à vos séances des membres en recherchant le code approprié dans le Répertoire des Services et sélectionner CONFIRMER INSCRIPTIONS.
+
