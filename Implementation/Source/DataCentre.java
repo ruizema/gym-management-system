@@ -16,6 +16,11 @@ public class DataCentre {
     private LinkedList<Registration> registrations = new LinkedList<>();
     private LinkedList<Service> services = new LinkedList<>();
 
+    /**Method to login client onto application
+     * 
+     *@param email The email used for the creation of the Account
+     *@return The date state of the Account and if it's successful shows client QRcode, name, id and type
+     */
     public String[] login(String email) {
         Account account = accounts.get(email);
         String code = account == null ? "1" : account.isSuspended() ? "2" : "0";
@@ -31,6 +36,12 @@ public class DataCentre {
         }
     }
 
+    /**Method to validate an ID of client
+     * 
+     *@param id The ID of client
+     *@return The validity of ID
+     *@throws IOException if ID entered doesn't match specified format
+     */
     public int validateId(String id) throws IOException {
         LinkedList accounts = getDataRecords("Account");
         for (Object account : accounts) {
@@ -46,6 +57,12 @@ public class DataCentre {
         return 1;
     }
 
+    /**Method to access to DataRecords
+     * 
+     *@param dataType The type of data in DataRecords
+     *@return A linkedList of many of the same dataType
+     *@throws IOException if dataType not in DataRecords in the good format
+     */
     public LinkedList getDataRecords(String dataType) throws IOException {
         switch (dataType) {
             case "Account":
@@ -62,6 +79,11 @@ public class DataCentre {
         return null;
     }
 
+    /**Method to create a new data from types in DataRecords
+     *
+     *@param data Informations necessary to create dataType
+     *@param dataType Type of data we are creating
+     */
     public void createDataRecord(String[] data, String dataType) {
         switch (dataType) {
             case "Session":
@@ -71,7 +93,11 @@ public class DataCentre {
                 registrations.add(new Registration(data));
                 String sessionId = data[5];
                 for (Session session : sessions) {
+<<<<<<< HEAD
                     if (sessionId.equals(session.getSessionId())) {
+=======
+                    if (sessionId == Integer.parseInt(session.getSessionId())) {
+>>>>>>> 6cb92d3ad25f4ffdca7c4ef65bd60fd18ffb6812
                         System.out.println("Le montant à payer est de " + session.getPrice() + "$.");
                     }
                 }
@@ -92,6 +118,11 @@ public class DataCentre {
         }
     }
 
+    /**Method to access all existing sessions
+     * 
+     *@return A String of all the sessions
+     *@throws IOException if data is not written properly
+     */
     public String[] getSessions() throws IOException {
         LinkedList sessions = getDataRecords("Session");
         String[] output = new String[sessions.size()];
@@ -103,6 +134,12 @@ public class DataCentre {
         return output;
     }
 
+    /**Method to see all registrations to a session
+     * 
+     *@param employeeId The ID of the professional
+     *@return A list of registrations in String format
+     *@throws IOException if data is not written properly
+     */
     public String[] getRegistrations(int employeeId) throws IOException {
         LinkedList registrations = getDataRecords("Registration");
         String[] output = new String[registrations.size()];
@@ -116,6 +153,14 @@ public class DataCentre {
         return output;
     }
 
+    /**Method to validate presence of member in a session
+     * 
+     *@param memberId Member ID
+     *@param serviceId Service ID
+     *@param sessionId Session ID
+     *@return The truth value of de presence at session
+     *@throws IOException if data not written properly
+     */
     public boolean validatePresence(String memberId, String serviceId, String sessionId) throws IOException {
         LinkedList registrations = getDataRecords("Registration");
         for (Object registration : registrations) {
@@ -134,6 +179,10 @@ public class DataCentre {
         return false;
     }
 
+    /**Method to generate pay weekly slips
+     * 
+     *@throws IOException if data doesn't match format
+     */
     public void principalAccounting() throws IOException {
         String report = generateServiceReport();
         int eftCount = 0;
@@ -160,6 +209,12 @@ public class DataCentre {
         System.out.println(report);
     }
 
+    /**Method to update Accounts if needed 
+     * 
+     *@param accountId Number ID of client
+     *@param suspended Status of the Account
+     *@throws IOException if wrong input
+     */
     public void updateAccounts(String accountId, boolean suspended) throws IOException {
         for (Object account : getDataRecords("Account")) {
             if (((Account) account).getId().equals(accountId)) {
@@ -168,6 +223,11 @@ public class DataCentre {
         }
     }
 
+    /**Method that creates a service report indicating which professionnal gets paid and how much
+     * 
+     *@return The report on the screen
+     *@throws IOException if wrong input output
+     */
     public String generateServiceReport() throws IOException {
         String[] sessions = getSessions();
         LinkedList<String> lines = new LinkedList<>();
@@ -196,6 +256,12 @@ public class DataCentre {
                 "Total des frais: " + fees + '\n';
     }
 
+    /**Method to access a specific Account from an ID
+     * 
+     *@param id The ID query
+     *@return The Account found or nothing
+     *@throws IOException if wrong entries
+     */
     private Account getAccount(String id) throws IOException {
         LinkedList accounts = getDataRecords("Account");
         Account foundAccount = null;
@@ -207,6 +273,11 @@ public class DataCentre {
         return foundAccount;
     }
 
+    /**Method to get a specific service name from a service ID
+     *
+     *@param id The ID query of service
+     *@return The name of the service found
+     */
     public String getService(String id) {
         String name = "";
         for(Service service: services) {
@@ -217,6 +288,11 @@ public class DataCentre {
         return name;
     }
 
+    /**Method to find a specific session from an ID
+     *
+     *@param id The ID query session
+     *@return The found session
+     */
     public Session getSession(String id) {
         Session foundSession = null;
         for(Session session: sessions) {
@@ -227,7 +303,17 @@ public class DataCentre {
         return foundSession;
     }
 
+<<<<<<< HEAD
     // TODO: send to Accounts & write to files
+=======
+    /**Method to write the reports for each member that benefited a service
+     * and professional that offered the service
+     * 
+     *@param dateReport The date that the report is generated
+     *@throws IOException if dateReport is not in a right format
+     */
+    // TODO: write to memory (AND file)
+>>>>>>> 6cb92d3ad25f4ffdca7c4ef65bd60fd18ffb6812
     public void generateClientReport(String dateReport) throws IOException {
         LinkedList<Account> professionals = new LinkedList<>();
         LinkedList<Account> members = new LinkedList<>();
@@ -317,5 +403,23 @@ public class DataCentre {
 
     public static void main(String[] args) throws IOException {
         (new DataCentre()).testing();
+<<<<<<< HEAD
+=======
+    }
+
+    /**Method read files created in report for services use
+     * 
+     *@param id Clients ID number
+     *@param dateReport Date when the report is generated
+     *@throws IOException if input is wrong
+     */
+    public void viewClientReport(String id, String dateReport) throws IOException{
+        BufferedReader reader = new BufferedReader(new FileReader(getAccount(id).getName() + "-" + dateReport + ".txt")); 
+        String st; 
+        while ((st = reader.readLine()) != null) {
+        System.out.println(st); 
+        }
+        reader.close();
+>>>>>>> 6cb92d3ad25f4ffdca7c4ef65bd60fd18ffb6812
     }
 }

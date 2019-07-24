@@ -6,6 +6,11 @@ public class Main {
     private static DataCentre dataCentre = new DataCentre();
     private static Scanner scanner = new Scanner(System.in);
 
+    /**Main function permits to use the system
+     * 
+     *@param args Input from users
+     *@throws IOException if args is not in an accepted format
+     */
     public static void main(String[] args) throws IOException {
         boolean quit = false;
         while (!quit) {
@@ -27,6 +32,10 @@ public class Main {
         }
     }
 
+    /**Method to show the options an administrator can do in the system
+     * 
+     *@throws IOException if input from user is incorrect
+     */
     // TODO: display all accounts?
     private static void adminMenu() throws IOException {
         boolean exit = false;
@@ -73,6 +82,11 @@ public class Main {
         } while (!exit);
     }
 
+    /**Logging menu function to guide members or professionals into the system
+     * by authenticating themselves
+     * 
+     *@throws IOException if input from user is incorrect
+     */
     private static void loginMenu() throws IOException {
         System.out.println("\nIdentification de l'utilisateur\n" +
                 "Entrez votre courriel:");
@@ -98,6 +112,10 @@ public class Main {
         }
     }
 
+    /**Member menu function to guide members to do what they can in the system
+     * 
+     *@throws IOException if input from user is incorrect
+     */
     // TODO: view report
     private static void memberMenu() throws IOException {
         System.out.println("\nMenu du membre\n" +
@@ -120,6 +138,11 @@ public class Main {
         }
     }
 
+    /**Logging menu function to guide professionals into the system and showing what
+     * they can do and access with this system
+     * 
+     *@throws IOException if input from user is incorrect
+     */
     // TODO: view report
     private static void professionalMenu() throws IOException {
         System.out.println("\nMenu du professionnel\n" +
@@ -146,6 +169,10 @@ public class Main {
         }
     }
 
+    /**Function directing the system to create a dataRecord
+     * 
+     *@param dataType Type of data in DataRecord
+     */
     private static void createDataRecord(String dataType) {
         int nbFields = DataRecord.getFieldNames(dataType).length;
         String[] data = new String[nbFields];
@@ -165,6 +192,10 @@ public class Main {
         dataCentre.createDataRecord(data, dataType);
     }
 
+    /**Function allowing the users to consult the existing sessions
+     * 
+     *@throws IOException if input is wrong
+     */
     private static void viewSessions() throws IOException {
         String[] sessions = dataCentre.getSessions();
         for (String session : sessions) {
@@ -172,6 +203,10 @@ public class Main {
         }
     }
 
+    /**Function allowing to consult the number of registrations in a session
+     * 
+     *@throws IOException if input is wrong
+     */
     private static void viewRegistrations() throws IOException {
         System.out.println("Entrez le numéro du professionnel:");
         String[] registrations = dataCentre.getRegistrations(scanner.nextInt());
@@ -180,6 +215,10 @@ public class Main {
         }
     }
 
+    /**Function allowing users to confirm their presence in a session
+     * 
+     *@throws IOException if input is wrong
+     */
     private static void confirmPresence() throws IOException {
         // TODO: Update
         System.out.println("Entrez le numéro du membre");
@@ -200,13 +239,37 @@ public class Main {
         }
     }
 
+    /**Function directing the system to generateServiceReport()
+     * 
+     *@throws IOException if input is wrong
+     */
     private static void generateServiceReport() throws IOException {
         System.out.println(dataCentre.generateServiceReport());
     }
 
+    /**Function directing the system to create the report files for each 
+     * members who used a service and professionnal offering them
+     * 
+     *@throws IOException if input is wrong
+     */
     private static void generateClientReport() throws IOException {
         System.out.println("Veuillez entrer la date (JJ-MM-AAAA)");
         String date = scanner.nextLine();
         dataCentre.generateClientReport(date);
     }
+<<<<<<< HEAD
+=======
+
+    /**Function allowing to consult the sessions report for an individual
+     * 
+     *@throws IOException if input is wrong
+     */
+    private static void viewSessionReport() throws IOException{
+        System.out.println("Entrez votre numéro de membre");
+        String id = scanner.nextLine();
+        System.out.println("Entrez la date (JJ-MM-AAAA)");
+        String date = scanner.nextLine();
+        dataCentre.viewClientReport(id, date);
+    }
+>>>>>>> 6cb92d3ad25f4ffdca7c4ef65bd60fd18ffb6812
 }
