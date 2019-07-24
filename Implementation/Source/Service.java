@@ -18,7 +18,7 @@ public class Service extends DataRecord {
      * 
      *@return Service ID
      */
-    private String generateId() {
+    public String generateId() {
         String output = "";
         for (int i = 0; i < 7; i++) {
             output += String.valueOf((int) Math.floor(Math.random() * 10));
