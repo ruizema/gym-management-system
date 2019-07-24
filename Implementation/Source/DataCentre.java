@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -301,8 +302,6 @@ public class DataCentre {
         return foundSession;
     }
 
-
-
     /**Method to write the reports for each member that benefited a service
      * and professional that offered the service
      * 
@@ -409,12 +408,11 @@ public class DataCentre {
      *@throws IOException if input is wrong
      */
     public void viewClientReport(String id, String dateReport) throws IOException{
-        BufferedReader reader = new BufferedReader(new FileReader(getAccount(id).getName() + "-" + dateReport + ".txt")); 
+        BufferedReader reader = new BufferedReader(new FileReader(getAccount(id).getName() + "-" + dateReport + ".txt"));
         String st; 
         while ((st = reader.readLine()) != null) {
         System.out.println(st); 
         }
         reader.close();
-
     }
 }
