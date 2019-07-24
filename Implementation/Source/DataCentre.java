@@ -73,7 +73,7 @@ public class DataCentre {
                 registrations.add(new Registration(data));
                 int sessionId = Integer.parseInt(data[5]);
                 for (Session session : sessions) {
-                    if (sessionId == session.getSessionId()) {
+                    if (sessionId == Integer.parseInt(session.getSessionId())) {
                         System.out.println("Le montant à payer est de " + session.getPrice() + "$.");
                     }
                 }
@@ -221,7 +221,7 @@ public class DataCentre {
     public Session getSession(String id) {
         Session foundSession = null;
         for(Session session: sessions) {
-            if(session.getSessionId() == (Integer.parseInt(id))) {
+            if(session.getSessionId().equals(id)) {
                 foundSession = session;
             }
         }
