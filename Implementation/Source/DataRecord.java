@@ -8,7 +8,6 @@ public abstract class DataRecord {
     private static HashMap<String, String[]> fieldNames = new HashMap<>(Map.of(
             "Service", new String[] {
                 "Nom du service (20 caractères)",
-                "Code du service (7 chiffres)",
             },
             "Session", new String[]{
                 "Date et heure actuelles (JJ-MM-AAAA HH:MM:SS)",

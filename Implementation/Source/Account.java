@@ -5,6 +5,7 @@ public class Account extends DataRecord {
     private String email;
     private String name;
     private String type;
+    private String report;
 
     public Account(String[] data) {
         super(data);
@@ -61,5 +62,13 @@ public class Account extends DataRecord {
 
     public void setSuspended(boolean status) {
         this.suspended = status;
+    }
+
+    public void addReport(String report) {
+        this.report = report;
+    }
+
+    public String getReport() {
+        return report;
     }
 }

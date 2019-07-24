@@ -27,6 +27,7 @@ public class Main {
         }
     }
 
+    // TODO: display all accounts?
     private static void adminMenu() throws IOException {
         boolean exit = false;
         do {
@@ -97,6 +98,7 @@ public class Main {
         }
     }
 
+    // TODO: view report
     private static void memberMenu() throws IOException {
         System.out.println("\nMenu du membre\n" +
                 "---- Choisissez une option ----\n" +
@@ -122,6 +124,7 @@ public class Main {
         }
     }
 
+    // TODO: view report
     private static void professionalMenu() throws IOException {
         System.out.println("\nMenu du professionnel\n" +
                 "---- Choisissez une option ----\n" +
@@ -159,7 +162,7 @@ public class Main {
             System.out.println(DataRecord.getFieldNames(dataType)[i]);
             String field = scanner.nextLine();
             // validate data
-            if (DataRecord.validation(dataType , field , i ) == true ) {
+            if (DataRecord.validation(dataType, field, i)) {
             data[i] = field;
             }
             else {

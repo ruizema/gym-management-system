@@ -7,8 +7,8 @@ public class Session extends DataRecord {
         return Integer.parseInt(data[9]);
     }
 
-    // TODO: generate sessionId
-    public int getSessionId() {
-        return Integer.parseInt(data[8]);
+    // TODO: generate sessionId & overwrite whatever the user entered lmao
+    public String getSessionId() {
+        return data[8];
     }
 }

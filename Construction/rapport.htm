@@ -1,0 +1,762 @@
+
+<html>
+<head>
+    <title>Rapport - IFT 2255</title>
+    <style type="text/css">
+        table
+        {
+            border: outset 2px black;
+            border-collapse: collapse;
+        }
+        th
+        {
+            border-bottom: double 2px black;
+        }
+        td
+        { 
+            border-bottom: solid 1px black;
+        }
+        .first_col
+        {
+            border-right: double 2px black;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- --------------------------------DEBUT DEVOIR 1 -------------------------------->
+
+    <h1 style="text-align: center;">
+        <u><font color="green">IFT 2255 - Été 2018 - Devoir 1 </font></u></h1>
+    <h2>
+        Information générale</h2>
+    <p>
+        <span style="font-weight: bold;">Nom: </span>Jasmine Pankham
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>9002
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>jasmine.pankham@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">temps mis: </span>15
+    </p>
+     <p>
+        <span style="font-weight: bold;">Nom: </span>Rana Nawfal
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>2193
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>rana.nawfal@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">temps mis: </span>15
+    </p>
+    <p>
+        <span style="font-weight: bold;">Nom: </span>Rui Ze Ma
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>2285
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>rui.ze.ma@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">temps mis: </span>15
+    </p>
+    <h2>
+        Distribution des tâches</h2>
+    <p>
+        <span style="font-weight: bold;">Soumissionaire: </span>Rui Ze Ma
+    </p>
+    <table cellpadding="7px">
+        <thead>
+            <tr>
+                <th class="first_col">
+                    Tâche
+                </th>
+                <th>
+                    Jasmine
+                </th>
+                <th>
+                    Rana
+                </th>
+                <th>
+                    Rui Ze 
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="first_col">
+                    Glossaire
+                </td>
+                <td>
+                    <center>X</center>
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    Diagramme UML
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    <center>X</center>
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    Cas d'utilisation
+                </td>
+                <td>
+                    <center>X (25%)</center>
+                </td>
+                <td>
+                    <center>X (25%)</center>
+                </td>
+                <td>
+                    <center>X (50%)</center>
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    Risques
+                </td>
+                <td>
+                    <center>X</center>
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    Exigences non fonctionnelles
+                </td>
+                <td>
+                    <center>X</center>
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    Prototype
+                </td>
+                <td>
+                    <center>classe CentralServer - fonction get</center>
+                </td>
+                <td>
+                    <center>classe CentralServer - fonction create</center>
+                </td>
+                <td>
+                    <center>classe Main et Logique du prototype</center>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>
+        Hypothèses</h2>
+    <p>
+        J'ai supposé que le centre sportif #gym possède un système central (le centre de données #GYM) qui enregistre des nouveaux membres et des professionnels par l'intermédiaire d'un agent. Ce centre de données permet au membre de consulter et s'inscrire et comfirmer sa présence à un service offert. Il permet aussi à un professionnel de créer une séance et consulter les inscriptions.
+    </p>
+    <h2>
+        Tâche 1 : Glossaire</h2>
+    <p>
+        <b>Client:</b> Personne étant intéressé à être membre de #GYM <br>
+
+		<b>Professionnel:</b> Personne offrant les services au #GYM <br>
+
+		<b>Numéro du professionnel:</b> Numéro identifiant du professionnel <br>
+
+		<b>Numéro du membre:</b> Numéro identifiant du membre <br>
+
+		<b>Centre de Données:</b> Système central qui enregistre les données personnelles des membres, les séances de services et les inscriptions aux séances. Il valide aussi les numéros de membres et les inscriptions <br>
+
+		<b>Agent:</b> Personne à la réception qui se charge de transmettre toutes les informations données par le membre ou professionnel à l'ordinateur, au logiciel <br>
+
+		<b>Réception:</b> Endroit où il faut passer pour faire des inscriptions, valider son numéro d'identifiant, valider ses inscriptions et tout autre informations concernant les services offerts du #GYM, ainsi que pour accéder le #GYM <br>
+
+		<b>Inscriptions de membres:</b> Champs d'informations contenant les informations personnelles des membres <br>
+
+		<b>Inscriptions aux séances:</b> Champs d’informations contenant les numéros d’identification du member inscrit, celui du professionnel et les informations de la séance <br>
+
+		<b>Répertoire de services:</b> Fichier contenant tous les codes de services offerts <br>
+
+		<b>Séances:</b> Activité proposée ou supervisée par un professionnel à des horaires fixes <br>
+
+		<b>Services:</b> Activité offert par #GYM soit les salles d’entrainement, la piscine, les salles multisports et les séances <br>
+
+		<b>Code du service:</b> Numéro identifiant les services <br>
+
+		<b>Code de séance:</b> Numéro identifiant les séances <br>
+    </p>
+    
+    
+    <h2>
+        Tâche 2: Diagramme de cas d'utilisation UML</h2>
+    <p>
+        <img src="uml-dev1.jpg"
+        alt="Diagramme de cas d'utilisation UML" />
+    </p>
+    
+    <p><font color="green">********************** NOUVEAU UML **********************</font></p>
+    <p>
+        <img src="uml-dev2.jpg"
+        alt="Diagramme de cas d'utilisation UML" />
+    </p>
+    
+    <p><font color="green">*********************************************************</font></p>
+    <h2>Tâche 3: Cas d'utilisation</h2>
+    <p>
+        <b>Modification des cas d'utilisation en caractères gras</b>
+    </p>
+    <pre style="font-family: times, serif;">
+        <span style="font-weight: bold;">Cas d'utilisation :</span> Création d'un nouveau compte.
+        <span style="font-weight: bold;">But :</span> Le client désire adhérer a #GYM.
+        <span style="font-weight: bold;">Préconditions :</span> Le client n'est pas membre de #gym.
+        <span style="font-weight: bold;">Acteurs :</span> Agent (principal), Client ou Professionnel (secondaire).
+        <span style="font-weight: bold;">Scénario principal :</span>
+        1. Le client ou le professionnel se présente à la recéption du centre.
+        2. L'agent lui demande ses informations personnelles
+            2.2. L'agent rentre les informations dans son ordinateur.
+            2.3. les informations sont donc enregistrées dans le système central: Le Centre de Données #GYM.
+        <b>3. Le client paie ses frais d'adhésion.
+        4. Le client reçoit son numéro de membre.</b>
+        <span style="font-weight: bold;">Scénarios alternatifs :</span>
+        <b>2.3a.1 Le logiciel refuse de créer un nouvel enregistrement, le client est déjà membre.
+        3a.1 La méthode de paiement est refusée ou les fonds sont déficients.</b>
+        <span style="font-weight: bold;">Postconditions :</span> Le systeme assigne un numéro unique au membre ou au professionnel.
+    </pre>
+
+    <pre  style="font-family: times, serif;">
+        <span style="font-weight: bold;">Cas d'utilisation :</span> Validation du numéro de membre .
+        <span style="font-weight: bold;">But :</span>  Le client a l'intention d'accéder au centre sportif et ses services.
+        <span style="font-weight: bold;">Préconditions :</span> Le client est déjà membre du #GYM.
+        <span style="font-weight: bold;">Acteurs :</span> Agent (principal), Client (secondaire) ou Professionnel (secondaire).
+        <span style="font-weight: bold;">Scénario principal :</span>
+        1. Le client se rend à la réception et donne son numéro d'identifiant.
+        2. L'agent entre le numéro dans le logiciel.
+        3. Le logiciel confirme le numéro et affiche "Validé".
+        <span style="font-weight: bold;">Scénarios alternatifs :</span>
+        3a.1. Le logiciel rejete le numéro et affiche "Numéro invalide".
+        <b>3b.1. Le logiciel rejete le numéro et affiche "Membre suspendu".
+        3b.2. L'agent informe le membre que son compte est suspendu à cause de frais due.</b>
+        <span style="font-weight: bold;">Postconditions :</span>Le système ouvre le passage au #GYM.
+    </pre>
+    
+    <pre  style="font-family: times, serif;">
+        <span style="font-weight: bold;">Cas d'utilisation :</span> Consultation du Répertoire de Services
+        <span style="font-weight: bold;">But :</span> Pour s'inscrire à une séance, l'agent doit aider le client à consulter l'ensemble des services offerts et les séances.
+        <span style="font-weight: bold;">Préconditions :</span> Le client est déjà membre de #GYM.
+        <span style="font-weight: bold;">Acteurs :</span> Agent (principal), Client (secondaire).
+        <span style="font-weight: bold;">Scénario principal :</span>
+        1. L'agent à la réception demande au logiciel de consulter la liste des services offerts.
+        2. Le système fait afficher l'ensemble des services offerts et les séances disponibles dans le Répertoire des Services.
+        <span style="font-weight: bold;">Scénarios alternatifs :</span>
+        N/A
+        <span style="font-weight: bold;">Postconditions :</span> Le système a affiché les détails des services offerts et séances disponibles. 
+        Il sera ensuite possible de sélectionner une séance pour s'y inscrire.
+    </pre>
+
+    <pre  style="font-family: times, serif;">
+        <span style="font-weight: bold;">Cas d'utilisation :</span> Inscription à une séance
+        <span style="font-weight: bold;">But :</span> Le client désire s'inscrire à une séance.
+        <span style="font-weight: bold;">Préconditions :</span> Le client est déjà membre de #GYM.
+        <span style="font-weight: bold;">Acteurs :</span> Agent (principal), Client (secondaire).
+        <span style="font-weight: bold;">Scénario principal :</span>
+        1. L'agent appelle Validation du numéro de membre.
+        2. L'agent appelle Consultation de Répertoire de Services.
+        3. L'agent sélectionne la séance désirée et y inscrit le membre.
+        4. Lors de la confirmation de l'inscription à la séance, le logiciel enregistre les champs d'inscription dans le centre de données.
+        <b>5. Le logiciel cherche et affice le montant due pour la séance.
+        6. Le membre paie pour son inscription.</b>
+        <span style="font-weight: bold;">Scénarios alternatifs :</span> 
+        <b>6a.1 Les fonds sont insufficents, le membre n'est pas inscrit.</b>
+        <span style="font-weight: bold;">Postconditions :</span> L'inscription est enregistré dans le centre de données.
+    </pre>
+
+    <pre  style="font-family: times, serif;">
+        <span style="font-weight: bold;">Cas d'utilisation :</span> Création d'une séance
+        <span style="font-weight: bold;">But :</span> Le professionnel désire fournir une nouvelle séance d'un service aux clients du #GYM.
+        <span style="font-weight: bold;">Préconditions :</span> Le professionnel s'est déjà inscrit à un compte au #GYM.
+        <span style="font-weight: bold;">Acteurs :</span> Agent (principal), Professionnel (secondaire).
+        <span style="font-weight: bold;">Scénario principal :</span>
+        1. Le professionnel se présente à la réception.
+        2. L'agent demande au professionnel les informations nécessaires pour créer une nouvelle séance dans le Répertoire des Services.
+        3. L'agent envoie ces informations au Centre de Données.
+        4. Le Centre de Données crée les nouvelles séances dans le Répertoire des Services.
+        <span style="font-weight: bold;">Scénarios alternatifs :</span>
+        4a.1. Le Centre de Données rejette la requête, car certaines informations fournie sont invalides.
+        <span style="font-weight: bold;">Postconditions :</span> Une nouvelle séance a été créée dans le Répertoire des Services.
+    </pre>
+
+    <pre  style="font-family: times, serif;">
+        <span style="font-weight: bold;">Cas d'utilisation :</span> Confirmation de présence à une séance
+        <span style="font-weight: bold;">But :</span> Après que le client s'est inscrit à une séance, et avant que cette dernière commence, le client doit se présenter
+        à la réception pour confirmer sa présence.
+        <span style="font-weight: bold;">Préconditions :</span> Le client s'est déjà inscrit à la séance. La séance n'est pas encore commencée.
+        <span style="font-weight: bold;">Acteurs :</span> Agent (principal), Client (secondaire).
+        <span style="font-weight: bold;">Scénario principal :</span>
+        1. Le client se présente à la réception et indique à l'agent la séance à laquelle il s'est inscrit.
+        2. L'agent cherche la séance dans le Répertoire de Service.
+        3. Le client donne à l'agent son numéro de membre.
+            3.1 L'agent envoie ce numéro au Centre de données pour vérifier si l'inscription est valide.
+        4. Le système indique que l'inscription est valide.
+        5. L'agent donne au client accès à la séance.
+            5.1 Le système crée un enregistrement de la confirmation sur le disque, avec les informations nécessaires.
+        <span style="font-weight: bold;">Scénarios alternatifs :</span>
+        4a.1. Le système indique que l'inscription n'est pas valide.
+        4a.2. Le client est refusé accès à la séance.
+        <span style="font-weight: bold;">Postconditions :</span> Le client est donné accès à la séance pour laquelle il s'est inscrit.
+    </pre>
+    
+    <pre  style="font-family: times, serif;">
+        <span style="font-weight: bold;">Cas d'utilisation :</span> Consultation des inscriptions à une séance
+        <span style="font-weight: bold;">But :</span> Le professionnel désire consulter les inscriptions à ses séances.
+        <span style="font-weight: bold;">Préconditions :</span> Le professionnel a déjà ouvert une séance dans le Répertoire de Services.
+        <span style="font-weight: bold;">Acteurs :</span> Agent (principal), Professionnel (secondaire).
+        <span style="font-weight: bold;">Scénario principal :</span>
+        1. Le professionnel donne son numéro à l'agent de la réception.
+        2. Le professionnel sélectionne à l'agent la séance qu'il veut consulter.
+        3. L'agent envoie un requête au système pour afficher la liste des inscriptions pour la séance sélectionnée.
+        <span style="font-weight: bold;">Scénarios alternatifs :</span>
+        1a.1. Le numéro de l'agent est invalide.
+        2a.1. Le professionnel n'a pas encore créé de séances.
+        <span style="font-weight: bold;">Postconditions :</span> Le système affiche une liste des inscriptions pour la séance sélectionnée.
+    </pre>
+    <p><font color="green">********************** NOUVEAU CAS D'UTILISATION **********************</font></p>
+    <pre  style="font-family: times, serif;">
+        <span style="font-weight: bold;">Cas d'utilisation :</span> Procédure comptable principale
+        <span style="font-weight: bold;">But :</span> Création de fichier TEF et du rapport de synthèse
+        <span style="font-weight: bold;">Préconditions :</span> Le professionnel à fournit des séances, il est vendredi minuit
+        <span style="font-weight: bold;">Acteurs :</span> Gérant (principal), Professionnel (secondaire).
+        <span style="font-weight: bold;">Scénario principal :</span>
+        1. La procédure est éxécutée automatiquement vendredi à minuit.
+        2. Génèration des enregistrements sur le disque sous forme de données de transfert électronique de fond (TEF).
+            2.1 Le fichier TEF contient le nom du professionnel, le numéro du professionnel et le montant à lui transférer pour ces services de la semaine.
+        3. Lecture du fichier des services fournis de la semaine.
+        4. Production d'un rapport de synthèse qui est envoyé au gérant.
+            4.1 Le rapport concerne les comptes payables et décrit la liste de tous les professionnels qui doivent être payés cette semaine-là, le nombre de services de chacun et le total de leurs frais pour cette semaine-là.
+            4.2 À la fin du rapport, le nombre total de professionnels qui ont fourni des services cette semaine-là, le nombre total de services et le total des frais doivent apparaitre.
+        <span style="font-weight: bold;">Scénarios alternatifs :</span>
+        1a.1. La procédure est exécutée individuellement à la demande du gérant de #GYM à n'importe quel moment de la semaine. 
+         
+        <span style="font-weight: bold;">Postconditions :</span> Les fichiers TEF et le rapport synthèse sont créer.
+    </pre>
+    
+    <pre  style="font-family: times, serif;">
+        <span style="font-weight: bold;">Cas d'utilisation :</span> Traitement des paiements des frais d'adhésion
+        <span style="font-weight: bold;">But :</span> Mettre le système à jour sur la validation des membres
+        <span style="font-weight: bold;">Préconditions :</span> Il est 21h.
+        <span style="font-weight: bold;">Acteurs :</span> Services comptables RnB (principal)
+        <span style="font-weight: bold;">Scénario principal :</span>
+        1. Le service comptable enregistre des paiements des frais d'adhésion.
+        2. Le service comptable suspend les membres dont les frais sont en retard.
+        3. Le service comptable rétablit les membres suspendus qui ont maintenant payé les frais dus. 
+        4. Le système informatique de RnB met à jour les enregistrements d'adhésion pertinents du Centre de Données #GYM chaque soir à 21h.
+        <span style="font-weight: bold;">Scénarios alternatifs :</span>
+        N/A
+        <span style="font-weight: bold;">Postconditions :</span> Le Centre de Données #GYM est mis à jour sur la validité de chacun de ses membres.
+    </pre>
+    <p><font color="green">***************************************************************************</font></p>
+
+    <h2>
+        Tâche 4: Risques</h2>
+    <p>
+		Du plus sévère au moins sévère:
+		<ol>
+			<li>Le logiciel prend plus de place de mémoire que contient l'ordinateur.</li>
+			<li>Le logiciel ne donne pas de numéro d'identifiant lorsqu'on rentre les données d'un client.</li> 
+			<li>Lors des additions de membres, le logiciel pourrait écraser les données des membres existants.</li> 
+			<li>Le Répertoire de Services créer une base de données.</li> 
+			<li>Les programmeurs de l'équipe n'ont pas d'expérience avec le langage de Java.</li> 
+        </ol>
+    </p>
+    <h2>
+        Tâche 5: Exigences non-fonctionnelles</h2>
+    <p>
+   		<ol>
+			<li>Logiciel doit être écrit en Java </li>
+			<li>Le Répertoire de Services doit être un fichier </li> 
+			<li>Il n’y a pas de bases de données ou afficher toutes les informations nécessaires lorsqu’on vérifie une séance</li> 
+			<li>Le code de service est de 7 chiffres </li> 
+			<li>Afficher la raison pour laquelle un membre serait non validé pour l’accès</li> 
+    	</ol>
+    </p>
+
+<h2>
+        Statistiques</h2>
+    <p>
+        <img src="stat_1.png"
+        alt="Statistiques1" width="700" height="500" />
+    </p>
+
+    <p>
+        <img src="stat_2.png"
+        alt="Statistiques1" width="700" height="500"/>
+    </p>
+
+<!-- ----------------------------------FIN DEVOIR 1 -------------------------------->
+
+<!-- --------------------------------DEBUT DEVOIR 2 -------------------------------->
+    <h1 style="text-align: center;">
+        <u><font color="green"> IFT 2255 - Été 2018 - Devoir 2</font></u> </h1>
+    <h2>
+        Information générale</h2>
+    <p>
+        <span style="font-weight: bold;">Nom: </span>Jasmine Pankham
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>9002
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>jasmine.pankham@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">temps mis: </span>30
+    </p>
+     <p>
+        <span style="font-weight: bold;">Nom: </span>Rana Nawfal
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>2193
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>rana.nawfal@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">temps mis: </span>30
+    </p>
+    <p>
+        <span style="font-weight: bold;">Nom: </span>Rui Ze Ma
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>2285
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>rui.ze.ma@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">temps mis: </span>30
+    </p>
+    <h2>
+        Distribution des tâches</h2>
+    <p>
+        <span style="font-weight: bold;">Soumissionaire: </span>Rui Ze Ma
+    </p>
+    <table cellpadding="7px">
+        <thead>
+            <tr>
+                <th class="first_col">
+                    Tâche
+                </th>
+                <th>
+                    Jasmine
+                </th>
+                <th>
+                    Rana
+                </th>
+                <th>
+                    Rui Ze 
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="first_col">
+                    Analyse
+                </td>
+                <td>
+                    <center>X</center>
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    Diagramme d'activité UML
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    <center>X</center>
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    Diagramme de classe UML
+                </td>
+                <td>
+                    <center>X</center>
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    Diagramme de séquence UML
+                </td>
+                <td>
+                    <center>X</center>
+                </td>
+                <td>
+                    <center>X</center>
+                </td>
+                <td>
+                    <center>X</center>
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    Prototype
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    <center>X</center>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>
+        Hypothèses</h2>
+    <p>
+        J'ai supposé que le centre sportif #gym possède un système central (le centre de données #GYM) qui enregistre des nouveaux membres et des professionnels par l'intermédiaire d'un agent. Ce centre de données permet au membre de consulter et s'inscrire et comfirmer sa présence à un service offert. Il permet aussi à un professionnel de créer une séance et consulter les inscriptions. De plus, il tient compte des paiements par les membres et les paiements hebdomadaires aux professionnels. Il rédige aussi un rapport destiné au gérant du #GYM. 
+    </p>
+    <h2>
+        Tâche 1 : Analyse</h2>
+    <p>
+    Le système qui satisfait les exigences est de mode interactif. Le système requiert de l’assistance manuelle pour accomplir ses tâches et de ressources humaines comme l’agent. Le système est traité par un ordinateur. Il faut donc une base de données pour créer le Centre de Données #GYM et le Répertoire des Services. Le système a donc besoin de disques dur interne et externe suffisamment grand pour stocker les informations d’objets tels que les comptes des membres, les sessions, leurs inscriptions et confirmations, les fichiers TEF, etc. Il faut aussi une imprimante pour imprimer les rapports hebdomadaires pour le gérant. Le système interagit aussi avec les banques pour envoyer les paies.
+    </p>
+    
+    
+    <h2>
+        Tâche 2: Diagramme d'activité UML</h2>
+   
+        <h3>Diagramme principal:</h3>
+        <img src="actprinc.jpg" 
+        alt="Diagramme d'activités principal" />
+
+        <h3>Ajouter/mettre à jour/supprimer un membre:</h3>
+        <img src="act1.jpg" 
+        alt="Diagramme d'activités de : Ajouter/mettre à jour/supprimer un membre" />
+        
+        <h3>Ajouter/mettre à jour/supprimer un service:</h3>
+        <img src="act2.jpg"
+        alt="Diagramme d'activités de : Ajouter/mettre à jour/supprimer un service" />
+        
+        <h3>Inscription à une séance:</h3>
+        <img src="act3.jpg"
+        alt="Diagramme d'activités de : inscription à une séance" />
+
+        <h3>Confirmer séance:</h3>
+        <img src="act4.jpg"
+        alt="Diagramme d'activités de : confirmer séance" />
+        
+        <h3>Procédure comptable:</h3>
+        <img src="act5.jpg"
+        alt="Diagramme d'activités de : procédure comptable" />
+        
+    
+    <h2>
+        Tâche 3: Diagramme de classe UML</h2>
+    <p>
+    <img src="classDiagram.jpg"/>
+    </p>
+    
+    <h2>
+        Tâche 4: Diagrammes de séquence UML</h2>
+
+        <h3>Ajouter/mettre à jour/supprimer un membre:</h3>
+        <img src="seq1.jpg" 
+        alt="Diagramme de séquence de : Ajouter/mettre à jour/supprimer un membre" />
+
+        <h3>Ajouter/mettre à jour/supprimer un service:</h3>
+        <img src="seq2.jpg"
+        alt="Diagramme de séquence de : Ajouter/mettre à jour/supprimer un service" />
+        
+        <h3>Inscription à une séance:</h3>
+        <img src="seq3.jpg"
+        alt="Diagramme de séquence de : inscription à une séance" />
+
+        <h3>Confirmer séance:</h3>
+        <img src="seq4.jpg"
+        alt="Diagramme de séquence de : confirmer séance" />
+        
+        <h3>Procédure comptable:</h3>
+        <img src="seq5.jpg"
+        alt="Diagramme de séquence de : procédure comptable" />
+
+    <h2>
+        Statistiques</h2>
+    <p>
+        <img src="stats1tp2.jpg"/>
+        <img src="stats2tp2.jpg"/>
+    </p>  
+
+
+<!-- ----------------------------------FIN DEVOIR 2 -------------------------------->
+
+<!-- --------------------------------DEBUT DEVOIR 3 -------------------------------->
+
+    <h1 style="text-align: center;">
+        <u><font color="green"> IFT 2255 - Été 2018 - Devoir 3</font></u> </h1>
+
+
+    <h2>
+        Information générale</h2>
+    <p>
+        <span style="font-weight: bold;">Nom: </span>Jasmine Pankham
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>9002
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>jasmine.pankham@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">temps mis: </span>30
+    </p>
+     <p>
+        <span style="font-weight: bold;">Nom: </span>Rana Nawfal
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>2193
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>rana.nawfal@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">temps mis: </span>30
+    </p>
+    <p>
+        <span style="font-weight: bold;">Nom: </span>Rui Ze Ma
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>2285
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>rui.ze.ma@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">temps mis: </span>30
+    </p>
+    <h2>
+        Distribution des tâches</h2>
+    <p>
+        <span style="font-weight: bold;">Soumissionaire: </span>Rui Ze Ma
+    </p>
+    <table cellpadding="7px">
+        <thead>
+            <tr>
+                <th class="first_col">
+                    Tâche
+                </th>
+                <th>
+                    Jasmine
+                </th>
+                <th>
+                    Rana
+                </th>
+                <th>
+                    Rui Ze 
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="first_col">
+                    Implémentation en Java
+
+                </td>
+                <td>
+                    <center>X</center>
+                </td>
+                <td>
+                    <center>X</center>
+                </td>
+                <td>
+                    <center>X</center>
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                   Tests unitaires
+                </td>
+                <td>
+                    <center>X</center>
+                </td>
+                <td>
+                    <center>X</center>
+                </td>
+                <td>
+                    <center>X</center>
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                   Livraison et documentation
+                </td>
+                <td>
+                    <center>X</center>
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    <center>X</center>
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+    <h2>
+        Hypothèses</h2>
+    <p>
+        J'ai supposé que le centre sportif #gym possède un système central (le centre de données #GYM) qui enregistre des nouveaux membres et des professionnels par l'intermédiaire d'un agent. Ce centre de données permet au membre de consulter et s'inscrire et comfirmer sa présence à un service offert. Il permet aussi à un professionnel de créer une séance et consulter les inscriptions. De plus, il tient compte des paiements par les membres et les paiements hebdomadaires aux professionnels. Il rédige aussi un rapport destiné au gérant du #GYM. 
+    </p>
+
+    <h2> Tâche 1 : Implémentation en Java</h2>
+
+    <h2> Tâche 2 : Tests unitaires</h2>
+    <h3>   </h3>
+        <img src="testUnit1.jpg" />
+    <h3>   </h3>
+        <img src="testUnit2.jpg" />
+    <h3>   </h3>
+        <img src="testUnit3.jpg" />
+    <h3>   </h3>
+        <img src="testUnit4.jpg" />
+    <h3>   </h3>
+        <img src="testUnit5.jpg" />
+    <h3>   </h3>
+        <img src="testUnit6.jpg" />
+
+
+    <h2> Tâc
+        he 3 : Livraison et documentation</h2>
+
+
+
+
+
+    <h2>
+        Statistiques</h2>
+    <p>
+        <img src="stats1tp3.jpg"/>
+        <img src="stats2tp3.jpg"/>
+    </p>  
+
+</body>
+</html>
+

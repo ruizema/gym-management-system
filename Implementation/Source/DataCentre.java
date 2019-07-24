@@ -197,7 +197,7 @@ public class DataCentre {
                 "Total des frais: " + fees + '\n';
     }
 
-    public Account getAccount(String id) throws IOException {
+    private Account getAccount(String id) throws IOException {
         LinkedList accounts = getDataRecords("Account");
         Account foundAccount = null;
         for(Object account: accounts) {
@@ -228,13 +228,14 @@ public class DataCentre {
         return foundSession;
     }
 
+    // TODO: write to memory (AND file)
     public void generateClientReport(String dateReport) throws IOException {
         LinkedList<Account> professionals = new LinkedList<>();
         LinkedList<Account> members = new LinkedList<>();
         LinkedList<Integer> consultations = new LinkedList<>();
         LinkedList<Integer> pays = new LinkedList<>();
         String file = "";
-        for(Confirmation confirm: this.confirmations) {
+        for (Confirmation confirm: this.confirmations) {
             BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
             String date = confirm.getDate();
             String serviceId = confirm.getServiceId();
@@ -281,6 +282,37 @@ public class DataCentre {
         }
     }
 
+    public void testing() throws IOException {
+        // create member account
+        createDataRecord(new String[]{"mmrz33@gmail.com", "Rui Ze Ma", "8110 Naples", "Brossard", "QC", "J4Y2R6", "M"}, "Account");
+        // create professional account
+        createDataRecord(new String[]{"abcde@gmail.com", "Bob Lol", "1234 Sherbrooke", "Montreal", "QC", "H4B2T6", "P"}, "Account");
+        // create service
+        createDataRecord(new String[]{"Yoga"}, "Service");
+        // create session
+        String serviceId = services.getFirst().getId();
+        String profId = accounts.get("abcde@gmail.com").getId();
+        createDataRecord(new String[]{"23-07-2019 19:54:23", "25-07-2019", "06-08-2019", "15:45", "L", profId, serviceId, "", ""}, "Session");
+        // register to session
+        String userId = accounts.get("mmrz33@gmail.com").getId();
+        String sessionId = sessions.getFirst().getSessionId();
+        createDataRecord(new String[]{"23-07-2019 19:54:23", "25-07-2019", profId, userId, serviceId, sessionId, ""}, "Registration");
+        // confirm presence
+        if (validatePresence(userId, serviceId, sessionId)) {
+            System.out.println("Presence confirmed!");
+        } else {
+            System.out.println("PRESENCE AUTHENTIFICATION FAILED");
+            return;
+        }
+        // procedure comptable (including both reports)
+        principalAccounting();
+        generateClientReport("29-07-2019");
+    }
+
+    public static void main(String[] args) throws IOException {
+        (new DataCentre()).testing();
+	}
+	
     public void viewClientReport(String id, String dateReport) throws IOException{
         BufferedReader reader = new BufferedReader(new FileReader(getAccount(id).getName() + "-" + dateReport + ".txt")); 
         String st; 
