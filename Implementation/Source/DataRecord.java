@@ -3,6 +3,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.regex.Matcher; 
+import java.util.regex.Pattern; 
+
 
 public abstract class DataRecord {
     private static HashMap<String, String[]> fieldNames = new HashMap<>(Map.of(
@@ -90,7 +93,8 @@ public abstract class DataRecord {
         String[] restriction = parse[1].split("[ ]+");
 
         switch(restriction[1]) {
-            case "chiffres":
+        	//X chiffres
+            case "chiffres":  
                 // check if only int       	
                 try {
                     int result = Integer.parseInt(field);
@@ -102,7 +106,7 @@ public abstract class DataRecord {
                     return true;
                 }
                 return false;
-               
+            // X lettres   
             case "lettres":
             	if(field.matches("[a-zA-Z]+")) {
             		if(field.length() <= Integer.parseInt(restriction[0])) {
@@ -110,6 +114,7 @@ public abstract class DataRecord {
             		}
             	}
             	return false;
+            //X caractères	
             case "caractères":
             	if(field.length() <= Integer.parseInt(restriction[0])) {
             		return true;
@@ -118,16 +123,20 @@ public abstract class DataRecord {
         }
 	        	
     	switch (restriction[0]) {
+    		//(M ou P) (Membre ou Professionnel)
     		case "M":
     			if(field == "M" || field == "P" ) {
     				return true;
     			}
     			return false;
     		case "JJ-MM-AAAA":
+    			//JJ-MM-AAAA HH:MM:SS
     			if (restriction[1] == "HH:MM:SS" )
     				return isValidDateTime(field);
     			else
+    				//JJ-MM-AAAA
     				return isValidDate(field);
+    		//(en $, 5 chiffres dont 2 décimales)
     		case "xxx.xx":
     			try {
 	                Double num = Double.parseDouble(field);
@@ -141,14 +150,15 @@ public abstract class DataRecord {
 	        	}
 	        	else 
 	        		return false;
+	        //HH:MM	
     		case "HH:MM":
     			return isValidTime(field);
-    			
+    		//(quels jours il est offert à la même heure)	
     		case "D" :
     			String[] jours = field.split(",");
     			if( jours.length > 7)
     				return false;
-    		 
+    		//maximum 30 inscriptions 
     		case "maximum":
     			try {
         		 	int result = Integer.parseInt(field);
@@ -160,6 +170,10 @@ public abstract class DataRecord {
     				return true;
     				else 
     					return false;
+    		//email
+    		case "email":
+    			return isValidEmail(field);
+    			
     	}
         return true;
     }
@@ -210,5 +224,26 @@ public abstract class DataRecord {
             return false;
         }
         return true;
+    }
+    
+    /**Method to validate the validity of an email
+     * 
+     *@param email The input email
+     *@return The truth value of the email
+     */
+    public static boolean isValidEmail(String email) {
+
+        Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
+        Matcher mat = pattern.matcher(email);
+
+        if(mat.matches()){
+
+            return true;
+        }else{
+
+            return false;
+        }
+    	
+    	
     }
 }
