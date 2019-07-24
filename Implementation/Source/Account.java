@@ -43,7 +43,7 @@ public class Account extends DataRecord {
     public String getInfosReport() {
         String infos = "";
         infos += name + "\n" + id + "\n";
-        for(int i=2; i<data.length-1; i++){
+        for(int i=2; i < data.length-1; i++){
             infos += data[i] + "\n";
         }
         return infos;

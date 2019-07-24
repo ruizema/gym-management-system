@@ -104,7 +104,6 @@ public class Main {
                 "---- Choisissez une option ----\n" +
                 "1. Consultation du Répertoire des Services\n" +
                 "2. Inscription à une séance\n" +
-                "3. Consultation du rapport des services obtenus\n" +
                 "q: RETOURNER");
         boolean exit = false;
         while (!exit) {
@@ -114,9 +113,6 @@ public class Main {
                     break;
                 case "2":
                     createDataRecord("Registration");
-                    break;
-                case "3":
-                    viewSessionReport();
                     break;
                 case "q":
                     exit = true;
@@ -131,7 +127,6 @@ public class Main {
                 "1. Consultation du Répertoire des Services\n" +
                 "2. Consultation des inscriptions\n" +
                 "3. Confirmation des présences\n" +
-                "4. Consulation des services fournis\n" +
                 "q: RETOURNER");
         boolean exit = false;
         while (!exit) {
@@ -144,9 +139,6 @@ public class Main {
                     break;
                 case "3":
                     confirmPresence();
-                    break;
-                case "4":
-                    viewSessionReport();
                     break;
                 case "q":
                     exit = true;
@@ -216,13 +208,5 @@ public class Main {
         System.out.println("Veuillez entrer la date (JJ-MM-AAAA)");
         String date = scanner.nextLine();
         dataCentre.generateClientReport(date);
-    }
-
-    private static void viewSessionReport() throws IOException{
-        System.out.println("Entrez votre numéro de membre");
-        String id = scanner.nextLine();
-        System.out.println("Entrez la date (JJ-MM-AAAA)");
-        String date = scanner.nextLine();
-        dataCentre.viewClientReport(id, date);
     }
 }

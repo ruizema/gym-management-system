@@ -3,8 +3,8 @@ public class Session extends DataRecord {
         super(data);
     }
 
-    public int getPrice() {
-        return Integer.parseInt(data[9]);
+    public double getPrice() {
+        return Double.parseDouble(data[9]);
     }
 
     // TODO: generate sessionId & overwrite whatever the user entered lmao
