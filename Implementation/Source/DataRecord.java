@@ -48,14 +48,28 @@ public abstract class DataRecord {
             }));
     String[] data;
 
+    /**Abstract constructor
+     * 
+     *@param data The information needed to create some data record
+     */
     DataRecord(String[] data) {
         this.data = data;
     }
 
+    /**Function to access the fieldNames contents
+     * 
+     *@param className Name of the field wanted
+     *@return The contents of the field wanted in a list of String
+     */
     public static String[] getFieldNames(String className) {
         return fieldNames.get(className);
     }
 
+    /**Method to put the data of the fieldNames into String
+     * 
+     *@param className Name of the field wanted
+     *@return The data of the field in String format
+     */
     public String toString(String className) {
         String output = "\n";
         for (int i = 0; i < fieldNames.get(className).length; i++) {
@@ -63,42 +77,46 @@ public abstract class DataRecord {
         }
         return output;
     }
-    
+
+    /**Function to verify the conformity of the data that's been entered
+     * 
+     *@param dataType The name of type of data stored
+     *@param field The entries of the fieldNames
+     *@param i Variable integer
+     *@return If the content written to a field respects the specified format is true or not
+     */
     public static boolean validation (String dataType , String field , int i) {
-    	// parse what is in parenthesis
-    	String[] parse = getFieldNames(dataType)[i].split("[()]+");
-    	String[] restriction = parse[1].split("[ ]+");
-    	
-    	switch (restriction[1]) {
-	        case "chiffres":
-	        	 // check if only int       	
-	        	try {
-	        		 	int result = Integer.parseInt(field);
-	        		  } catch (NumberFormatException e) {
-	        		    return false;
-	        		  }
-	        	 // check if length is less than max
-	        	if ( field.length()<= Integer.parseInt(restriction[0]) )
-	        	{
-	        		return true;
-	        	}
-	        	return false;
-	           
-	        case "lettres":
-	        	if(field.matches("[a-zA-Z]+") == true) {
-	        		if(field.length() <= Integer.parseInt(restriction[0])) {
-	        			return true;
-	        		}
-	        	}
-	        	return false;
-	        case "caractères":
-	        	if(field.length() <= Integer.parseInt(restriction[0])) {
-	        		return true;
-	        	}
-	        	return false;
-	        	
-	        
-    	 }
+        // parse what is in parenthesis
+        String[] parse = getFieldNames(dataType)[i].split("[()]+");
+        String[] restriction = parse[1].split("[ ]+");
+
+        switch(restriction[1]) {
+            case "chiffres":
+                // check if only int       	
+                try {
+                    int result = Integer.parseInt(field);
+                } catch (NumberFormatException e) {
+                    return false;
+                }
+                // check if length is less than max
+                if( field.length()<= Integer.parseInt(restriction[0]) ) {
+                    return true;
+                }
+                return false;
+               
+            case "lettres":
+            	if(field.matches("[a-zA-Z]+") == true) {
+            		if(field.length() <= Integer.parseInt(restriction[0])) {
+            			return true;
+            		}
+            	}
+            	return false;
+            case "caractères":
+            	if(field.length() <= Integer.parseInt(restriction[0])) {
+            		return true;
+            	}
+            	return false;
+        }
 	        	
     	switch (restriction[0]) {
     		case "M":
@@ -145,14 +163,10 @@ public abstract class DataRecord {
     				return true;
     				else 
     					return false;
-    			
-    			
     	}
-    	
-    	return true;
-	
+        return true;
     }
-    
+
     public static boolean isValidDateTime(String inDate) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         dateFormat.setLenient(false);
