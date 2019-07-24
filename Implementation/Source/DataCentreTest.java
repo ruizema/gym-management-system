@@ -11,16 +11,17 @@ public class DataCentreTest {
     String[] dataD;
     String[] dataE;
 
-/*    Account a;
+    Account a;
     Session b;
-    Session c;
+    DataCentre c;
     Service d;
-    Registration e;*/
+
 
     @Before
     public void setUp() {
         String[] dataA = {"ab@gmail.com","ZY","999 moland","Tuni","MO","5G5G5G","M"};
         a = new Account(dataA);
+        
 
         String[] dataB = {
                 "20-07-2019 12:59:59",
@@ -35,6 +36,8 @@ public class DataCentreTest {
                 "135.45",
                 "Apporter vos tapis."};
 
+        b = new Session(dataB);
+        
         String[] dataD = {"yoga"};
         d = new Service(dataD);
     }
@@ -42,9 +45,20 @@ public class DataCentreTest {
 /*********TODO*********/
     @Test
     public void testLogin() {
-        fail("Not yet implemented");
+        String email = a.getEmail();
+        String[] login =  c.login(email);
+        assertEquals("0", login);
+        
     }
-
+    
+    @Test
+    public void testGetRegistrations() {
+        String type = a.getType();
+        assertEquals("M", type);
+    }
+    
+    
+/*
     @Test
     public void testValidateId() {
         fail("Not yet implemented");
@@ -55,10 +69,7 @@ public class DataCentreTest {
         fail("Not yet implemented");
     }
 
-    @Test
-    public void testGetRegistrations() {
-        fail("Not yet implemented");
-    }
+
 
     @Test
     public void testGetService() {
@@ -67,6 +78,9 @@ public class DataCentreTest {
 
     @Test
     public void testGetSession() {
-        fail("Not yet implemented");
+    	fail("Not yet implemented");
+        
     }
+    
+    */
 }
