@@ -71,7 +71,7 @@ public class DataCentre {
     public LinkedList getDataRecords(String dataType) throws IOException {
         switch (dataType) {
             case "Account":
-                return new LinkedList<Object>(accounts.values());
+                return new LinkedList<>(accounts.values());
             case "Session":
                 return sessions;
             case "Registration":

@@ -36,7 +36,6 @@ public class Main {
      * 
      *@throws IOException if input from user is incorrect
      */
-    // TODO: display all accounts?
     private static void adminMenu() throws IOException {
         boolean exit = false;
         do {
