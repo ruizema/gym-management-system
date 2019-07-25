@@ -61,7 +61,7 @@ public abstract class DataRecord {
     /**Function to access the fieldNames contents
      * 
      *@param className Name of the field wanted
-     *@return The contents of the field wanted in a list of String
+     *@return The contents of the field wanted in a1 list of String
      */
     public static String[] getFieldNames(String className) {
         return fieldNames.get(className);
@@ -85,7 +85,7 @@ public abstract class DataRecord {
      *@param dataType The name of type of data stored
      *@param field The entries of the fieldNames
      *@param i Variable integer
-     *@return If the content written to a field respects the specified format is true or not
+     *@return If the content written to a1 field respects the specified format is true or not
      */
     public static boolean validation (String dataType , String field , int i) {
         // parse what is in parenthesis

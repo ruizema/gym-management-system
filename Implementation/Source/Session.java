@@ -13,7 +13,7 @@ public class Session extends DataRecord {
         id = data[7].substring(0, 3) + data[8].substring(0, 2) + data[6].substring(data[6].length() - 2);
     }
 
-    /**Method to access price of a session
+    /**Method to access price of a1 session
      * 
      *@return Price of session
      */

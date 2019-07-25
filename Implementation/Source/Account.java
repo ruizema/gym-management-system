@@ -67,7 +67,7 @@ public class Account extends DataRecord {
         return email;
     }
 
-    /**Method to get the informations needed for a session report
+    /**Method to get the informations needed for a1 session report
      * 
      *@return A String of information for the report
      */
@@ -80,7 +80,7 @@ public class Account extends DataRecord {
         return infos;
     }
 
-    /**Method to write informations into a String
+    /**Method to write informations into a1 String
      * 
      *@param className ClassName
      *@return ClassName and ID with Account status into String

@@ -175,7 +175,7 @@ public class Main {
         }
     }
 
-    /**Function directing the system to create a dataRecord
+    /**Function directing the system to create a1 dataRecord
      * 
      *@param dataType Type of data in DataRecord
      */
@@ -209,7 +209,7 @@ public class Main {
         }
     }
 
-    /**Function allowing to consult the number of registrations in a session
+    /**Function allowing to consult the number of registrations in a1 session
      * 
      *@throws IOException if input is wrong
      */
@@ -221,7 +221,7 @@ public class Main {
         }
     }
 
-    /**Function allowing users to confirm their presence in a session
+    /**Function allowing users to confirm their presence in a1 session
      * 
      *@throws IOException if input is wrong
      */
@@ -253,7 +253,7 @@ public class Main {
     }
 
     /**Function directing the system to create the report files for each 
-     * members who used a service and professionnal offering them
+     * members who used a1 service and professionnal offering them
      * 
      *@throws IOException if input is wrong
      */

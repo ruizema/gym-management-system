@@ -84,7 +84,7 @@ public class DataCentre {
         return null;
     }
 
-    /**Method to create a new data from types in DataRecords
+    /**Method to create a1 new data from types in DataRecords
      *
      *@param data Informations necessary to create dataType
      *@param dataType Type of data we are creating
@@ -135,7 +135,7 @@ public class DataCentre {
         return output;
     }
 
-    /**Method to see all registrations to a session
+    /**Method to see all registrations to a1 session
      * 
      *@param employeeId The ID of the professional
      *@return A list of registrations in String format
@@ -154,7 +154,7 @@ public class DataCentre {
         return output;
     }
 
-    /**Method to validate presence of member in a session
+    /**Method to validate presence of member in a1 session
      * 
      *@param memberId Member ID
      *@param serviceId Service ID
@@ -224,7 +224,7 @@ public class DataCentre {
         }
     }
 
-    /**Method that creates a service report indicating which professionnal gets paid and how much
+    /**Method that creates a1 service report indicating which professionnal gets paid and how much
      * 
      *@return The report on the screen
      *@throws IOException if wrong input output
@@ -257,7 +257,7 @@ public class DataCentre {
                 "Total des frais: " + fees + '\n';
     }
 
-    /**Method to access a specific Account from an ID
+    /**Method to access a1 specific Account from an ID
      * 
      *@param id The ID query
      *@return The Account found or nothing
@@ -274,7 +274,7 @@ public class DataCentre {
         return foundAccount;
     }
 
-    /**Method to get a specific service name from a service ID
+    /**Method to get a1 specific service name from a1 service ID
      *
      *@param id The ID query of service
      *@return The name of the service found
@@ -289,7 +289,7 @@ public class DataCentre {
         return name;
     }
 
-    /**Method to find a specific session from an ID
+    /**Method to find a1 specific session from an ID
      *
      *@param id The ID query session
      *@return The found session
@@ -304,11 +304,11 @@ public class DataCentre {
         return foundSession;
     }
 
-    /**Method to write the reports for each member that benefited a service
+    /**Method to write the reports for each member that benefited a1 service
      * and professional that offered the service
      * 
      *@param dateReport The date that the report is generated
-     *@throws IOException if dateReport is not in a right format
+     *@throws IOException if dateReport is not in a1 right format
      */
     public void generateClientReport(String dateReport) throws IOException {
         LinkedList<Account> professionals = new LinkedList<>();
@@ -369,8 +369,8 @@ public class DataCentre {
 
     public void testing() throws IOException {
         // create member account
-        createDataRecord(new String[]{"mmrz33@gmail.com", "Rui Ze Ma", "8110 Naples", "Brossard", "QC", "J4Y2R6", "M"}, "Account");
-        createDataRecord(new String[]{"mmrz33@live.com", "Other Member", "8110 Naples", "Brossard", "QC", "J4Y2R6", "M"}, "Account");
+        createDataRecord(new String[]{"mmrz33@gmail.com", "Rui Ze Ma", "5555 Rome", "Brossard", "QC", "J4K3R7", "M"}, "Account");
+        createDataRecord(new String[]{"mmrz33@live.com", "Other Member", "1221 Taschereau", "Brossard", "QC", "J4K3R7", "M"}, "Account");
         // create professional account
         createDataRecord(new String[]{"abcde@gmail.com", "Bob Lol", "1234 Sherbrooke", "Montreal", "QC", "H4B2T6", "P"}, "Account");
         // create service

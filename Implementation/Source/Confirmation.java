@@ -59,7 +59,7 @@ public class Confirmation extends DataRecord {
 
     /**Method to access the session ID
      * 
-     *@return The ID of a session
+     *@return The ID of a1 session
      */
     public String getSessionId() {
         return data[4];
