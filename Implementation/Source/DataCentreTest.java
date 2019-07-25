@@ -66,11 +66,25 @@ public class DataCentreTest {
         assertEquals("0", login);
     }
     
+
     @Test
-    public void testGetType() {
-        String type = a1.getType();
-        assertEquals("M", type);
+    public void testValidateId() {
+    	 a1.generateId();
+         String id = a1.getId();
+         
+         int code = 8;
+         
+         try {
+			 code =  c.validateId(id);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			
+		}
+
+         assertEquals(0, code);
+
     }
+
     
     @Test
     public void testValidatePresence() throws IOException {
@@ -81,10 +95,7 @@ public class DataCentreTest {
         assertTrue(dataCenter.validatePresence(userId, serviceId, sessionId) && dataCenter.validatePresence(otherUserId, serviceId, sessionId));
     }
 /*
-    @Test
-    public void testValidateId() {
-        fail("Not yet implemented");
-    }
+
 
     @Test
     public void testGetDataRecords() {
