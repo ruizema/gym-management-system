@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 public class DataCentreTest {
-    DataCentre dataCenter;
+    DataCentre dataCenter = new DataCentre();
     String[] dataA;
     String[] dataB;
     String[] dataC;
@@ -69,8 +69,9 @@ public class DataCentreTest {
     public void testLogin() {
         String email = a1.getEmail();
         String[] login =  dataCenter.login(email);
+        String result = login[0];
 
-        assertEquals("0", login);
+        assertEquals("0", result);
     }
 
     @Test
@@ -86,8 +87,9 @@ public class DataCentreTest {
         String userId = a2.getId();
         String serviceId = d.getId();
         String sessionId = e.getSessionId();
-        String otherUserId = a3.getId();
-        assertTrue(dataCenter.validatePresence(userId, serviceId, sessionId) && dataCenter.validatePresence(otherUserId, serviceId, sessionId));
+        String otherUserId = a1.getId();
+        assertTrue(dataCenter.validatePresence(userId, serviceId, sessionId)
+                && dataCenter.validatePresence(otherUserId, serviceId, sessionId));
     }
 
     @Test
