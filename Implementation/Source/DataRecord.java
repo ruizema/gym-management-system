@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -87,55 +88,59 @@ public abstract class DataRecord {
      *@param i Variable integer
      *@return If the content written to a1 field respects the specified format is true or not
      */
-    public static boolean validation (String dataType , String field , int i) {
+    public static boolean validation(String dataType , String field , int i) {
         // parse what is in parenthesis
         String[] parse = getFieldNames(dataType)[i].split("[()]+");
         String[] restriction = parse[1].split("[ ]+");
 
-        switch(restriction[1]) {
-        	//X chiffres
-            case "chiffres":  
-                // check if only int       	
-                try {
-                    int result = Integer.parseInt(field);
-                } catch (NumberFormatException e) {
+        if (restriction.length > 1) {
+            switch (restriction[1]) {
+                //X chiffres
+                case "chiffres":
+                    // check if only int
+                    try {
+                        int result = Integer.parseInt(field);
+                    } catch (NumberFormatException e) {
+                        return false;
+                    }
+                    // check if length is less than max
+                    if( field.length()<= Integer.parseInt(restriction[0]) ) {
+                        return true;
+                    }
                     return false;
-                }
-                // check if length is less than max
-                if( field.length()<= Integer.parseInt(restriction[0]) ) {
-                    return true;
-                }
-                return false;
-            // X lettres   
-            case "lettres":
-            	if(field.matches("[a-zA-Z]+")) {
-            		if(field.length() <= Integer.parseInt(restriction[0])) {
-            			return true;
-            		}
-            	}
-            	return false;
-            //X caractères	
-            case "caractères":
-            	if(field.length() <= Integer.parseInt(restriction[0])) {
-            		return true;
-            	}
-            	return false;
+                // X lettres
+                case "lettres":
+                    if(field.matches("[a-zA-Z\\s]+")) {
+                        if(field.length() <= Integer.parseInt(restriction[0])) {
+                            return true;
+                        }
+                    }
+                    return false;
+                //X caractères
+                case "caractères":
+                    if(field.length() <= Integer.parseInt(restriction[0])) {
+                        return true;
+                    }
+                    return false;
+            }
         }
 	        	
     	switch (restriction[0]) {
     		//(M ou P) (Membre ou Professionnel)
     		case "M":
-    			if(field == "M" || field == "P" ) {
+    			if (field.equals("M") || field.equals("P")) {
     				return true;
     			}
     			return false;
     		case "JJ-MM-AAAA":
     			//JJ-MM-AAAA HH:MM:SS
-    			if (restriction[1] == "HH:MM:SS" )
-    				return isValidDateTime(field);
-    			else
-    				//JJ-MM-AAAA
-    				return isValidDate(field);
+    			if (restriction.length > 1) {
+                    return isValidDateTime(field);
+                }
+    			else {
+                    //JJ-MM-AAAA
+                    return isValidDate(field);
+                }
     		//(en $, 5 chiffres dont 2 décimales)
     		case "xxx.xx":
     			try {
@@ -156,8 +161,7 @@ public abstract class DataRecord {
     		//(quels jours il est offert à la même heure)	
     		case "D" :
     			String[] jours = field.split(",");
-    			if( jours.length > 7)
-    				return false;
+    			return jours.length < 7;
     		//maximum 30 inscriptions 
     		case "maximum":
     			try {
@@ -175,7 +179,7 @@ public abstract class DataRecord {
     			return isValidEmail(field);
     			
     	}
-        return true;
+        return false;
     }
 
     /**Method to validate the format of the date and time
@@ -237,13 +241,9 @@ public abstract class DataRecord {
         Matcher mat = pattern.matcher(email);
 
         if(mat.matches()){
-
             return true;
         }else{
-
             return false;
         }
-    	
-    	
     }
 }

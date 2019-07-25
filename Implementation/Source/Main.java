@@ -191,9 +191,9 @@ public class Main {
                 data[i] = field;
             }
             else {
-            	System.out.println("Wrong data type");
+            	System.out.println("Mauvaise donnee, operation annulee");
+            	return;
             }
-            
         }
         dataCentre.createDataRecord(data, dataType);
     }

@@ -367,40 +367,6 @@ public class DataCentre {
         }
     }
 
-    public void testing() throws IOException {
-        // create member account
-        createDataRecord(new String[]{"mmrz33@gmail.com", "Rui Ze Ma", "5555 Rome", "Brossard", "QC", "J4K3R7", "M"}, "Account");
-        createDataRecord(new String[]{"mmrz33@live.com", "Other Member", "1221 Taschereau", "Brossard", "QC", "J4K3R7", "M"}, "Account");
-        // create professional account
-        createDataRecord(new String[]{"abcde@gmail.com", "Bob Lol", "1234 Sherbrooke", "Montreal", "QC", "H4B2T6", "P"}, "Account");
-        // create service
-        createDataRecord(new String[]{"Yoga"}, "Service");
-        // create session
-        String serviceId = services.getFirst().getId();
-        String profId = accounts.get("abcde@gmail.com").getId();
-        createDataRecord(new String[]{"23-07-2019 19:54:23", "25-07-2019", "06-08-2019", "15:45", "L", "25", profId, serviceId, "6969420", "123.45", ""}, "Session");
-        // register to session
-        String userId = accounts.get("mmrz33@gmail.com").getId();
-        String sessionId = sessions.getFirst().getSessionId();
-        String otherUserId = accounts.get("mmrz33@live.com").getId();
-        createDataRecord(new String[]{"23-07-2019 19:54:23", "25-07-2019", profId, userId, serviceId, sessionId, ""}, "Registration");
-        createDataRecord(new String[]{"23-07-2019 19:54:23", "25-07-2019", profId, otherUserId, serviceId, sessionId, ""}, "Registration");
-        // confirm presence
-        if (validatePresence(userId, serviceId, sessionId) && validatePresence(otherUserId, serviceId, sessionId)) {
-            System.out.println("Presence confirmed!");
-        } else {
-            System.out.println("PRESENCE AUTHENTIFICATION FAILED");
-            return;
-        }
-        // procedure comptable (including both reports)
-        principalAccounting();
-        generateClientReport("29-07-2019");
-    }
-
-    public static void main(String[] args) throws IOException {
-        (new DataCentre()).testing();
-    }
-
     /**Method read files created in report for services use
      * 
      *@param id Clients ID number

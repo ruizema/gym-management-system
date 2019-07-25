@@ -94,26 +94,9 @@ public class DataCentreTest {
         String otherUserId = a3.getId();
         assertTrue(dataCenter.validatePresence(userId, serviceId, sessionId) && dataCenter.validatePresence(otherUserId, serviceId, sessionId));
     }
-/*
-
-
-    @Test
-    public void testGetDataRecords() {
-        fail("Not yet implemented");
-    }
-
-
 
     @Test
     public void testGetService() {
-        fail("Not yet implemented");
+        assertEquals("yoga", dataCenter.getService(d.getId()));
     }
-
-    @Test
-    public void testGetSession() {
-    	fail("Not yet implemented");
-        
-    }
-    
-    */
 }
